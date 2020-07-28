@@ -22,7 +22,7 @@
                                             <span class="la la-upload"></span>
                                         </div>
                                         <div class="upload-text">
-                                            <span class="ml-6"><input type="file" name="upload-prescription" id="upload-prescription">{{ __('UPLOAD NEW') }}</span>
+                                            <span class="ml-6"><!-- <input type="file" name="upload-prescription" id="upload-prescription"> -->{{ __('UPLOAD NEW') }}</span>
                                         </div>
                                     </a>
                                     <a href="#" class="upload-option-box d-flex" id="saved-prescriptions">
@@ -155,6 +155,9 @@
         </div>
 </section>
 <!--End Saved Prescriptions--->
+
+
+
 @endsection
 
 @section('script')
