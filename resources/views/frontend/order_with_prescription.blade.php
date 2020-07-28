@@ -17,15 +17,15 @@
                                     <p> {{ __('Please attach a prescription to proceed') }}</p>
                                 </div>
                                 <div class="upload-box">
-                                    <a href="" class="upload-option-box d-flex">
+                                    <a href="#" class="upload-option-box d-flex">
                                         <div class="upload-icon">
                                             <span class="la la-upload"></span>
                                         </div>
                                         <div class="upload-text">
-                                            <span class="ml-6">{{ __('UPLOAD NEW') }}</span>
+                                            <span class="ml-6"><input type="file" name="upload-prescription" id="upload-prescription">{{ __('UPLOAD NEW') }}</span>
                                         </div>
                                     </a>
-                                    <a href="" class="upload-option-box d-flex">
+                                    <a href="#" class="upload-option-box d-flex" id="saved-prescriptions">
                                         <div class="upload-icon">
                                             <span class="la la-save"></span>
                                         </div>
@@ -33,7 +33,7 @@
                                             <span>{{ __('SAVED PRESCRIPTIONS') }}</span>
                                         </div>
                                     </a>
-<!--                                    <div class="file-upload-wrapper" data-text="Select your file!">
+                    <!--                                    <div class="file-upload-wrapper" data-text="Select your file!">
                                         <input name="file-upload-field" type="file" class="file-upload-field" value="">
                                     </div>-->
                                 </div>
@@ -95,6 +95,15 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <ul class="float-left inline-links">
+                        <li>
+                            <a href="#" class="active">Continue</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 <!--End order with prescription--->
@@ -108,7 +117,7 @@
                    <div class="card box-shadow">
                         <div class="card-body">
                             <div class="back-to-page">
-                                <a href="">
+                                <a href="#" id="back-to-options">
                                     <span class="la la-arrow-left"></span> {{ __('Back to options') }}
                                 </a>
                             </div>
@@ -146,7 +155,23 @@
         </div>
 </section>
 <!--End Saved Prescriptions--->
+@endsection
 
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function(){
+        // Save prescription script
+        $("#saved-prescriptions").click(function(){
+            $(".order-with-prescription").hide();
+            $(".saved-prescriptions").show();
+        });
+        // Back to options click script
+        $("#back-to-options").click(function(){
+            $(".order-with-prescription").show();
+            $(".saved-prescriptions").hide();
+        });
+    });
+</script>
 @endsection
 
 
