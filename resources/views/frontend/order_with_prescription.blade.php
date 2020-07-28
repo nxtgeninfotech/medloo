@@ -11,8 +11,10 @@
                         <div class="card box-shadow h-100">
                             <div class="card-body">
                                 <div class="title">
-                                    <h3 class="heading-5 strong-600 mb-0">Upload Prescription</h3>
-                                    <p>Please attach a prescription to proceed</p>
+                                    <h3 class="heading-5 strong-600 mb-0">
+                                        {{ __('Upload Prescription') }} 
+                                    </h3>
+                                    <p> {{ __('Please attach a prescription to proceed') }}</p>
                                 </div>
                                 <div class="upload-box">
                                     <a href="" class="upload-option-box d-flex">
@@ -20,7 +22,7 @@
                                             <span class="la la-upload"></span>
                                         </div>
                                         <div class="upload-text">
-                                            <span class="ml-6">UPLOAD NEW</span>
+                                            <span class="ml-6">{{ __('UPLOAD NEW') }}</span>
                                         </div>
                                     </a>
                                     <a href="" class="upload-option-box d-flex">
@@ -28,7 +30,7 @@
                                             <span class="la la-save"></span>
                                         </div>
                                         <div class="upload-text">
-                                            <span>SAVED PRESCRIPTIONS</span>
+                                            <span>{{ __('SAVED PRESCRIPTIONS') }}</span>
                                         </div>
                                     </a>
 <!--                                    <div class="file-upload-wrapper" data-text="Select your file!">
@@ -37,7 +39,7 @@
                                 </div>
                                 
                                 <div class="title">
-                                    <h3 class="heading-5 strong-600 mb-0">Attached Prescriptions</h3>
+                                    <h3 class="heading-5 strong-600 mb-0">{{ __('Attached Prescriptions') }}</h3>
                                 </div>
                                 <div class="attached-pre-box">
                                     <ul>
@@ -72,24 +74,24 @@
                         <div class="card box-shadow h-100">
                             <div class="card-body">
                                 <div class="title">
-                                    <h3 class="heading-5 strong-600 mb-0">Guide for a valid prescription</h3>
+                                    <h3 class="heading-5 strong-600 mb-0">{{ __('Guide for a valid prescription') }}</h3>
                                 </div>
                                 <div class="valid-pre d-flex">
                                     <img src="https://www.1mg.com/images/online_consultation/validate_rx.svg">
                                     <div class="valid-list">
                                         <ul>
-                                            <li>Don't crop out any part of the image</li>
-                                            <li>Avoid blurred image</li>
-                                            <li>Include details of doctor and patient + clinic visit date</li>
-                                            <li>Medicines will be dispensed as per prescription</li>
-                                            <li>Supported files type: jpeg , jpg , png , pdf</li>
-                                            <li>Maximum allowed file size: 5MB</li>
+                                            <li>{{ __('Don\'t crop out any part of the image') }}</li>
+                                            <li>{{ __('Avoid blurred image') }}</li>
+                                            <li>{{ __('Include details of doctor and patient + clinic visit date') }}</li>
+                                            <li>{{ __('Medicines will be dispensed as per prescription') }}</li>
+                                            <li>{{ __('Supported files type: jpeg , jpg , png , pdf') }}</li>
+                                            <li>{{ __('Maximum allowed file size: 5MB') }}</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <small>Government regulations require a valid prescription</small>
+                        <small>{{ __('Government regulations require a valid prescription') }}</small>
                     </div>
                 </div>
             </div>
@@ -98,16 +100,20 @@
 <!--End order with prescription--->
 
 <!--Start Saved Prescriptions--->
-<section class="saved-prescriptions mt-4 mb-5">
+<section class="saved-prescriptions mt-4 mb-5" style="display:none;">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="saved-pre-wrapper">
                    <div class="card box-shadow">
                         <div class="card-body">
-                            <div class="back-to-page"><a href=""><span class="la la-arrow-left"></span> Back to options</a></div>
+                            <div class="back-to-page">
+                                <a href="">
+                                    <span class="la la-arrow-left"></span> {{ __('Back to options') }}
+                                </a>
+                            </div>
                             <div class="title">
-                                <h3 class="heading-5 strong-600 mb-0">Saved Prescriptions (1 selected)</h3>
+                                <h3 class="heading-5 strong-600 mb-0">{{ __('Saved Prescriptions (1 selected)') }}</h3>
                             </div>
                             <div class="saved-pre-box">
                                 <ul>
