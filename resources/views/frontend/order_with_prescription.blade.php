@@ -11,7 +11,7 @@
                         <div class="card box-shadow h-100">
                             <div class="card-body">
                                 <div class="title">
-                                    <h3 class="heading-5 strong-700 mb-0">
+                                    <h3 class="heading-5 strong-800 mb-0">
                                         {{ __('Upload Prescription') }} 
                                     </h3>
                                     <p> {{ __('Please attach a prescription to proceed') }}</p>
