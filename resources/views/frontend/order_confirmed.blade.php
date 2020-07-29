@@ -14,7 +14,7 @@
                                 <i class="la la-shopping-cart"></i>
                             </div>
                             <div class="block-content d-none d-md-block">
-                                <h3 class="heading heading-sm strong-400 c-gray-light text-capitalize">1. {{__('My Cart')}}</h3>
+                                <h3 class="heading heading-sm strong-300 c-gray-light text-capitalize">1. {{__('My Cart')}}</h3>
                             </div>
                         </div>
                     </div>
