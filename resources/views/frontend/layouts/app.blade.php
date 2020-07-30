@@ -121,6 +121,11 @@
 <!-- End Facebook Pixel Code -->
 @endif
 
+<style type="text/css">
+    .hidden{
+        display: none;
+    }
+</style>
 </head>
 <body>
 
