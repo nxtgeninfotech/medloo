@@ -206,10 +206,6 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function order_with_prescription()
-    {
-        return view('frontend.order_with_prescription');
-    }
 
     
     public function flash_deal_details($slug)
