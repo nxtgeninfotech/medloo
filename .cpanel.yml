@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/medloom3/public_html/project/
+    - /bin/cp -R ./ $DEPLOYPATH
