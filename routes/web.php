@@ -36,7 +36,6 @@ Route::post('/subsubcategories/get_attributes_by_subsubcategory', 'SubSubCategor
 
 //Home Page
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/order-with-prescription', 'HomeController@order_with_prescription')->name('order-with-prescription');
 Route::post('/home/section/featured', 'HomeController@load_featured_section')->name('home.section.featured');
 Route::post('/home/section/best_selling', 'HomeController@load_best_selling_section')->name('home.section.best_selling');
 Route::post('/home/section/home_categories', 'HomeController@load_home_categories_section')->name('home.section.home_categories');
@@ -110,6 +109,7 @@ Route::POST('/sslcommerz/ipn', 'PublicSslCommerzPaymentController@ipn');
 Route::get('stripe', 'StripePaymentController@stripe');
 Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
 //Stripe END
+
 
 Route::get('/compare', 'CompareController@index')->name('compare');
 Route::get('/compare/reset', 'CompareController@reset')->name('compare.reset');
@@ -246,4 +246,17 @@ Route::resource('addresses','AddressController');
 Route::get('/addresses/destroy/{id}', 'AddressController@destroy')->name('addresses.destroy');
 Route::get('/addresses/set_default/{id}', 'AddressController@set_default')->name('addresses.set_default');
 
+
+//Prescription routes 
+Route::get('order-with-prescription', 'PrescriptionController@order_with_prescription')->name('order-with-prescription');
+Route::get('order-with-prescription/specify', 'PrescriptionController@prescription_specify');
+
+
+
+
 Route::get('/{slug}', 'PageController@show_custom_page')->name('custom-pages.show_custom_page');
+
+
+
+
+
