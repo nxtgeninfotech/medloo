@@ -7,15 +7,8 @@
 @endphp
 
 <div class="flex-row">
-    <div class="flex-col-xl-6 blank-index d-flex align-items-center justify-content-center"
-    @if ($generalsetting->admin_login_sidebar != null)
-        style="background-image:url('{{ asset($generalsetting->admin_login_sidebar) }}');"
-    @else
-        style="background-image:url('{{ asset('img/bg-img/login-box.jpg') }}');"
-    @endif>
-
-    </div>
-    <div class="flex-col-xl-6">
+    
+    <div class="col-md-12">
         <div class="pad-all">
         <div class="text-center">
             <br>
