@@ -99,7 +99,7 @@
                 <div class="col-lg-12 col-md-12">
                     <ul class="float-left inline-links">
                         <li>
-                            <a href="#" class="active continue-button">Continue</a>
+                            <a href="{{ url('order-with-prescription/specify') }}" class="active continue-button">Continue</a>
                         </li>
                     </ul>
                 </div>
