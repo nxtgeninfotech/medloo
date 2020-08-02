@@ -17,6 +17,7 @@ class CreatePrescriptionImagesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->string('image');
+            $table->boolean('is_default')->default(true);
             $table->timestamp('created_at');
         });
     }

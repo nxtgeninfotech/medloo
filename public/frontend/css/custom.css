@@ -1,0 +1,24 @@
+.saved-prescriptions .saved-pre-box ul li .pre-img-item .pre-img img {
+    height: 196px !important;
+    width: 196px !important;
+}
+
+
+.continue-button {
+    background-color: rgb(255, 111, 97);
+    color: #ffffff !important;
+    height: 40px;
+    padding: 0px 16px;
+    text-decoration: none;
+    display: inline-flex;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 4px;
+    z-index: 100;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(255, 111, 97);
+}
+
+

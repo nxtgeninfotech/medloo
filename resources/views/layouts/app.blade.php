@@ -147,7 +147,14 @@
                 });
             }
 
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
         });
+
 
     </script>
 
@@ -162,6 +169,7 @@
           gtag('config', @php env('TRACKING_ID') @endphp);
         </script>
     @endif
+
 
 
 </head>
