@@ -59,6 +59,7 @@ class PrescriptionController extends Controller
 
     public function checkout(Request $request)
     {
+        $request->session()->put($request->all());
         return view('frontend.prescription.checkout');
     }
 

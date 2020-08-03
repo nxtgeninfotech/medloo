@@ -48,62 +48,70 @@
                                 </div>
 
 
-                                <div class="type-of-orders-box" id="type-of-orders-box">
-                                    <a href="#" class="order-option-box d-flex">
-                                        <div class="order-icon">
-                                            <input type="radio" name="type_of_order" value="1"
-                                                   id="type-of-order" onclick="orderTypeChange('1')">
-                                        </div>
-                                        <div class="order-type-text">
+                                <form method="post" action="{{ url('prescription/checkout') }}">
+
+                                    @csrf
+
+                                    <div class="type-of-orders-box" id="type-of-orders-box">
+                                        <a href="#" class="order-option-box d-flex">
+                                            <div class="order-icon">
+                                                <input type="radio" name="type_of_order" value="1"
+                                                       id="type-of-order" onclick="orderTypeChange('1')">
+                                            </div>
+                                            <div class="order-type-text">
                                         <span class="ml-6">
                                             {{ __('Order everything as per prescription') }}
                                         </span>
-                                        </div>
-                                    </a>
+                                            </div>
+                                        </a>
 
-                                    <input type="number" placeholder="Duration of dosage in days"
-                                           name="duration"
-                                           id="duration" pattern="\d*" class="hidden">
+                                        <input type="number" placeholder="Duration of dosage in days"
+                                               name="duration"
+                                               id="duration" pattern="\d*" class="hidden">
 
-                                    <a href="#" class="order-option-box d-flex">
-                                        <div class="order-icon">
-                                            <input type="radio" name="type_of_order" value="2"
-                                                   id="type-of-order2" onclick="orderTypeChange('2')">
-                                        </div>
-                                        <div class="order-type-text">
-                                            <span>{{ __('Search and add medicines to cart') }}</span>
-                                        </div>
-                                    </a>
+                                        <a href="#" class="order-option-box d-flex">
+                                            <div class="order-icon">
+                                                <input type="radio" name="type_of_order" value="2"
+                                                       id="type-of-order2" onclick="orderTypeChange('2')">
+                                            </div>
+                                            <div class="order-type-text">
+                                                <span>{{ __('Search and add medicines to cart') }}</span>
+                                            </div>
+                                        </a>
 
-                                    <a href="#" class="order-option-box d-flex">
-                                        <div class="order-icon">
-                                            <input type="radio" name="type_of_order" value="3"
-                                                   id="type-of-order3" onclick="orderTypeChange('3')">
-                                        </div>
-                                        <div class="order-type-text">
-                                            <span>{{ __('Call me for details') }}</span>
-                                        </div>
-                                    </a>
+                                        <a href="#" class="order-option-box d-flex">
+                                            <div class="order-icon">
+                                                <input type="radio" name="type_of_order" value="3"
+                                                       id="type-of-order3" onclick="orderTypeChange('3')">
+                                            </div>
+                                            <div class="order-type-text">
+                                                <span>{{ __('Call me for details') }}</span>
+                                            </div>
+                                        </a>
 
-                                    <label class="hidden" id="call_informative">
-                                        A Active Ecommerce pharmacist will call you from 011-41183088 within 30
-                                        mins to
-                                        confirm medicines (8 am - 8 pm)
-                                    </label>
+                                        <label class="hidden" id="call_informative">
+                                            A Active Ecommerce pharmacist will call you from 011-41183088 within 30
+                                            mins to
+                                            confirm medicines (8 am - 8 pm)
+                                        </label>
 
 
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12">
-                                            <ul class="float-left inline-links">
-                                                <li>
-                                                    <a href="{{ url('prescription/checkout') }}"
-                                                       class="active continue-button">Continue</a>
-                                                </li>
-                                            </ul>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <ul class="float-left inline-links">
+                                                    <li>
+                                                        <button type="submit"
+                                                                class="active continue-button continue-submit" disabled>
+                                                            Continue
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
+
                                     </div>
 
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -131,10 +139,15 @@
 
     <script>
         function orderTypeChange(orderType) {
+
+            $('.continue-submit').removeAttr('disabled');
+
             if (orderType == "0") {
                 $('#type-of-orders-box').show();
                 $('#product-search-box').hide();
                 $('input[name=type_of_order]').prop('checked', false);
+                $('.continue-submit').addAttr('disabled');
+
             } else if (orderType == "1") {
                 $('#duration').show();
                 $('#call_informative').hide();
