@@ -179,7 +179,7 @@ Route::group(['middleware' => ['user', 'verified']], function () {
     //Prescription routes
     Route::get('order-with-prescription', 'PrescriptionController@order_with_prescription')
         ->name('order-with-prescription');
-    Route::get('order-with-prescription/specify', 'PrescriptionController@prescription_specify');
+        Route::get('order-with-prescription/specify', 'PrescriptionController@prescription_specify');
 
     Route::group(['prefix' => 'ajax/prescription/image'], function () {
         Route::get('list', 'PrescriptionController@list_image');
@@ -187,6 +187,8 @@ Route::group(['middleware' => ['user', 'verified']], function () {
         Route::post('delete', 'PrescriptionController@delete_image');
         Route::post('update-default', 'PrescriptionController@update_default_image');
     });
+
+    Route::post('prescription/checkout','PrescriptionController@checkout');
 
 
 });

@@ -19,7 +19,7 @@ class PrescriptionController extends Controller
 
     public function prescription_specify()
     {
-
+        return view('frontend.prescription.prescription_specify');
     }
 
     public function add_image(Request $request)
@@ -55,6 +55,12 @@ class PrescriptionController extends Controller
             $item->is_default = true;
             $item->save();
         }
+    }
+
+    public function checkout(Request $request)
+    {
+        $request->session()->put($request->all());
+        return view('frontend.prescription.checkout');
     }
 
 

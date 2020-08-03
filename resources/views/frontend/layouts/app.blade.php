@@ -465,6 +465,24 @@
                 }
             }
 
+            function addToCartFromPriscription(pId) {
+
+                console.log(pId);
+                console.log($('#option-choice-form-' + pId).serializeArray());
+
+                $('.c-preloader').show();
+                $.ajax({
+                    type: "POST",
+                    url: '{{ route('cart.addToCart') }}',
+                    data: $('#option-choice-form-' + pId).serializeArray(),
+                    success: function (data) {
+                        $('.c-preloader').hide();
+                        updateNavCart();
+                    }
+                });
+            }
+
+
             function buyNow() {
                 if (checkAddToCartValidity()) {
                     $('#addToCart').modal();
