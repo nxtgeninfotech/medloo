@@ -396,7 +396,7 @@
         <div class="">
             <div class="container">
                 <div class="row no-gutters align-items-center">
-                    <div class="col-lg-3 col-8">
+                    <div class="col-lg-3 col-5">
                         <div class="d-flex">
                             <div class="d-block d-lg-none mobile-menu-icon-box">
                                 <!-- Navbar toggler  -->
@@ -431,8 +431,8 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-lg-9 col-4 position-static">
-                        <div class="d-flex w-100">
+                    <div class="col-lg-9 col-7 position-static">
+                        <div class="d-flex w-100 align-items-center">
                             <div class="search-box flex-grow-1 px-4">
                                 <form action="{{ route('search') }}" method="GET">
                                     <div class="d-flex position-relative">
@@ -472,11 +472,10 @@
                                         </div>
                                     </div>
                                 </form>
-
                             </div>
 
-                            <div class="logo-bar-icons d-inline-block ml-auto">
-                                <div class="d-inline-block d-lg-none">
+                            <div class="logo-bar-icons d-flex ml-auto">
+                                <div class="d-block d-lg-none">
                                     <div class="nav-search-box">
                                         <a href="#" class="nav-box-link">
                                             <i class="la la-search la-flip-horizontal d-inline-block nav-box-icon"></i>
@@ -509,15 +508,15 @@
                                         </a>
                                     </div>
                                 </div>-->
-                                <div class="d-none d-lg-inline-block">
-                                    <div class="btn-order-upload" id="order-prescription-upload">
-                                        <a href="{{ route('order-with-prescription') }}" class="nav-box-link">
+                                <div class="d-block btn-order-upload">
+                                    <div class="order-upload" id="order-prescription-upload">
+                                        <a href="{{ route('order-with-prescription') }}" class="btn btn-primary">
                                             <!--<i class="la la-heart-o d-inline-block nav-box-icon"></i>-->
-                                            <span class="nav-box-text d-none d-xl-inline-block">{{__('Upload')}}</span>
+                                            <span class="nav-box-text d-inline-block">{{__('Upload')}}</span>
                                         </a>
                                     </div>
                                 </div>
-                                <div class="d-inline-block" data-hover="dropdown">
+                                <div class="d-block" data-hover="dropdown">
                                     <div class="nav-cart-box dropdown" id="cart_items">
                                         <a href="" class="nav-box-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="la la-shopping-cart d-inline-block nav-box-icon"></i>
