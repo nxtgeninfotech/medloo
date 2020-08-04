@@ -46,6 +46,14 @@
                                     <h3 class="heading-5 strong-600 mb-0">{{ __('Attached Prescriptions') }}</h3>
                                 </div>
                                 <div class="attached-pre-box">
+                                    <div class="uploaded-pre-show">
+                                        <span class="uploaded-demo-img">
+                                            <img src='{{ asset('uploads/image/prescription-demo.png')}}' class="img-fluid">
+                                        </span>
+                                        <span class="uploaded-demo-text">
+                                            <span class='text-gray'>{{ __('Uploaded prescriptions will be shown here') }}</span>
+                                        </span>
+                                    </div>
                                     <ul id="attached_prescriptions">
 
                                         @foreach($prescriptions as $prescription)
@@ -56,8 +64,7 @@
                                                         <span class='la la-times-circle'></span>
                                                     </a>
                                                     <a href='' class='pre-img'>
-                                                        <img
-                                                            src='{{ asset('uploads/prescription/').'/'.$prescription->image }}'>
+                                                        <img src='{{ asset('uploads/prescription/').'/'.$prescription->image }}'>
                                                     </a>
                                                 </div>
                                             </li>
@@ -95,13 +102,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-lg-12 col-md-12">
-                    <ul class="float-left inline-links">
-                        <li>
-                            <a href="{{ url('order-with-prescription/specify') }}" class="active continue-button">Continue</a>
-                        </li>
-                    </ul>
+                    <a href="{{ url('order-with-prescription/specify') }}" class="active continue-button btn btn-primary">Continue</a>
                 </div>
             </div>
         </div>
@@ -117,7 +120,7 @@
                         <div class="card box-shadow">
                             <div class="card-body">
                                 <div class="back-to-page">
-                                    <a href="#" id="back-to-options">
+                                    <a href="#" id="back-to-options" class="btn-back-small">
                                         <span class="la la-arrow-left"></span> {{ __('Back to options') }}
                                     </a>
                                 </div>
@@ -217,6 +220,7 @@
                         html += "</div>";
                         html += "</li>";
                         $('#attached_prescriptions').append(html);
+                        $('.uploaded-pre-show').hide();
 
                         $.ajax({
                             url: "ajax/prescription/image/store",
