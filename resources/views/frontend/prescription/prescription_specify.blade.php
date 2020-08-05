@@ -131,7 +131,7 @@
         }
 
         function searchProduct(search) {
-           
+
             search = search.trim();
             $('#search-product-result').html('');
 
@@ -140,7 +140,7 @@
             }
             $.ajax({
                 method: "post",
-                url: "/ajax-search",
+                url: "/medloo/ajax-search",
                 data: {
                     search: search,
                     prescriptionSearch: true,
@@ -148,42 +148,49 @@
                 success: function (response) {
                      
                     response.forEach(function (product) {
-                        let html = '' +
-                            '<form class="option-choice-form-' + product.id + '">' +
+                        let html = '<div class="container medicines-list-box">' +
+                            '<form id="option-choice-form-' + product.id + '">' +
 
                             '<input type="hidden" name="id" value="' + product.id + '">' +
                             '<input type="hidden" name="quantity" value="1">' +
 
-                            '<div class="row col-md-12" style="border: groove;">\n' +
-                            '<div class="col-md-8">\n' +
-                            '<div>' + product.name + '</div>\n';
+                            '<div class="row medicines-item">\n' +
+                            '<div class="col-lg-9 col-8">\n' +
+                            '<div class="medicines-name">' + product.name + '</div>\n';
 
                         if (product.description) {
-                            html += '<div>' + product.description + '</div>\n';
+                            html += '<div class="medicines-desc text-gray">' + product.description + '</div>\n';
                         }
 
                         html += '</div>\n' +
-                            '\n' +
-                            '<div class="col-md-4">\n' +
-                            '<div><span>' + product.price + '</span></div>\n';
+                            '<div class="col-lg-3 col-4 text-right align-self-center">\n' +
+                            '<div class="medicines-price"><span>' + product.price + '</span></div>\n';
 
                         if (product.effected_price) {
                             html += '<div>\n';
 
                             if (product.discount_type == 'amount') {
-                                html += '<span>' + product.discount + ' off</span>\n';
+                                html += '<span class="medicines-discount">' + product.discount + ' off</span>\n';
                             } else if (product.discount_type == 'percent') {
-                                html += '<span>' + product.discount + '% off</span>\n';
+                                html += '<span class="medicines-discount">' + product.discount + '% off</span>\n';
                             }
-                            html += '<span>MRP  </span>\n' +
+                            html += '<span class="medicines-mrp">MRP  </span>\n' +
                                 '<del class="old-product-price strong-400">' + product.effected_price + '</del>\n' +
                                 '</div>\n';
                         }
 
-                        html += '<a href="#" onclick="addToCartFromPriscription(' + product.id + ')">ADD TO CART</a>\n' +
+                        html += '<a href="#" class="btn-add-cart"  onclick="addToCartFromPriscription(' + product.id + ')">ADD TO CART</a>\n' +
+                                '<div class="item-quantity-box ">\n'+
+                                 '<div class="item-quantity">\n'+
+                                 '<button class="bttn bttn-left" id="minus"><span>-</span></button>\n' +
+                                 '<input type="number" class="input nav-box-number" id="input">\n' +
+                                 '<button class="bttn bttn-right" id="plus"><span>+</span></button>\n' +
+                                 '</div>\n' +
+                                 '</div>\n' +
                             '</div>\n' +
-                            '</div>' +
-                            '</form>';
+                            '</div>\n' +
+                            '</form>' +
+                           '</div>' ; 
 
                         $('#search-product-result').append(html);
                     })

@@ -4877,10 +4877,27 @@ input[type="radio"]:checked + .radio-box:after {
 .signup-form .form-bottom{margin-top:10px;}
 
 .medicines-search-box{min-height:320px;}
-.medicines-search-input{position:relative;min-height:350px;}
+.medicines-search-input{position:relative;}
 .medicines-search-input .search-icon{position:absolute;left:15px;top:8px;color:#cacaca;}
 .medicines-search-input .close-icon{position:absolute;right:15px;top:8px;cursor:pointer}
 .medicines-search-input .form-control{padding-left:40px}
+
+.medicines-list-box{border:1px solid #e6e6e6;border-top:0}
+.medicines-list-box .medicines-item{padding:0.5rem 0;border:1px solid #e6e6e6;}
+.medicines-item .medicines-name{font-size:14px;font-weight:600;min-height:34px;line-height:16px;}
+.medicines-item .medicines-price{font-size:14px;font-weight:600}
+.medicines-item .btn-add-cart{font-size:12px;font-weight:600;color:#2eaeaf;padding:4px 0;display:inline-block;}
+
+.item-quantity{display:flex;justify-content:flex-end;}
+.item-quantity .bttn-left{border-top-left-radius:5px;border-bottom-left-radius:5px;}
+.item-quantity .input{padding:0;margin:0;text-align:center;border-top:1px solid #2eaeaf;border-bottom:1px solid #2eaeaf;border-left:none;border-right:none;width:36px}
+.item-quantity a.bttn{color:black;text-decoration:none;}
+.item-quantity a.bttn, .item-quantity .bttn{padding:0;text-align:center;border:1px solid #2eaeaf;box-shadow:none;font-size:18px;height:26px;width:26px;display:block;line-height:24px;font-weight:600;}
+.item-quantity a.bttn span, .item-quantity .bttn span{margin:auto !important;}
+.item-quantity .bttn-right{border-top-right-radius:5px;border-bottom-right-radius:5px;}
+.item-quantity input[type=number]::-webkit-inner-spin-button,
+.item-quantity input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
+
 
 
 @media (max-width: 767px){
