@@ -4,7 +4,7 @@
     <section class="home-banner-area mb-4">
         <div class="container">
             <div class="row no-gutters position-relative">
-                <div class="col-lg-3 position-static order-2 order-lg-0">
+                <div class="col-lg-12 position-static order-2 order-lg-0">
                     <div class="category-sidebar">
                         <div class="all-category d-none d-lg-block">
                             <span >{{__('Categories')}}</span>
@@ -45,7 +45,7 @@
                     $num_todays_deal = count(filter_products(\App\Product::where('published', 1)->where('todays_deal', 1 ))->get());
                 @endphp
 
-                <div class="@if($num_todays_deal > 0) col-lg-7 @else col-lg-9 @endif order-1 order-lg-0">
+                <div class="@if($num_todays_deal > 0) col-lg-7 @else col-lg-12 @endif order-1 order-lg-0">
                     <div class="home-slide">
                         <div class="home-slide">
                             <div class="slick-carousel" data-slick-arrows="true" data-slick-dots="true" data-slick-autoplay="true">
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="trending-category  d-none d-lg-block">
+<!--                    <div class="trending-category  d-none d-lg-block">
                         <ul>
                             @foreach (\App\Category::where('featured', 1)->get()->take(7) as $key => $category)
                                 <li @if ($key == 0) class="active" @endif>
@@ -74,7 +74,7 @@
                                 </li>
                             @endforeach
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
 
                 @if($num_todays_deal > 0)
