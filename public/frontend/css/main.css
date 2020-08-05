@@ -245,8 +245,8 @@ input[type="submit"] {
 }
 .btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
     color: #cf171f;
-    background-color: #cf171f;
-    border-color: #b9141b;
+    border-color: #db7579;
+    cursor:not-allowed;
 }
 .btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active,
 .show > .btn-outline-secondary.dropdown-toggle {
@@ -4875,6 +4875,12 @@ input[type="radio"]:checked + .radio-box:after {
 .signup-form .form-control{border:0;border-bottom: 3px solid #2eaeaf}
 .signup-form .health-profe{margin-top:30px;}
 .signup-form .form-bottom{margin-top:10px;}
+
+.medicines-search-box{min-height:320px;}
+.medicines-search-input{position:relative;min-height:350px;}
+.medicines-search-input .search-icon{position:absolute;left:15px;top:8px;color:#cacaca;}
+.medicines-search-input .close-icon{position:absolute;right:15px;top:8px;cursor:pointer}
+.medicines-search-input .form-control{padding-left:40px}
 
 
 @media (max-width: 767px){

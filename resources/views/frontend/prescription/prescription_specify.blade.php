@@ -15,34 +15,23 @@
                                         {{ __('Medicines') }}
                                     </h3>
                                 </div>
-                               
-                                <div id="product-search-box" class="hidden">
-                                    <div><a href="#" onclick="orderTypeChange('0')">â†? Back to options</a></div>
-                                    <div>
-                                        <div>
-                                            <i class="fa fa-search"></i>
-                                            <input type="text"
-                                                   id="srchBarShwInfoNew" value=""
-                                                   placeholder="Search medicines and health products"
-                                                   autocomplete="off"
-                                                   onkeyup="searchProduct(this.value)">
-                                            <i class="fa fa-times-circle"></i>
-                                        </div>
-
-                                        <div id="search-product-result">
-
-                                        </div>
+                                <div id="product-search-box" class="hidden medicines-search-box">
+                                    <div class="back-to-page">
+                                        <a href="#" onclick="orderTypeChange('0')" class="btn-back-small"> <span class="la la-arrow-left"></span> {{ __('Back to options') }}</a>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12">
-                                            <ul class="float-left inline-links">
-                                                <li>
-                                                    <a href="{{ url('cart') }}"
-                                                       class="active continue-button">Continue</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <div class="medicines-search-input">
+                                        <span class="search-icon"><i class="fa fa-search"></i></span>
+                                        <input type="text" class="form-control" id="srchBarShwInfoNew" value="" placeholder="Search medicines and health products" autocomplete="off" onkeyup="searchProduct(this.value)">
+                                        <span class="close-icon"><i class="fa fa-times-circle"></i></span>
                                     </div>
+                                    <div id="search-product-result">
+
+                                    </div>
+<!--                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <a href="{{ url('cart') }}" class="btn btn-primary">Continue</a>
+                                        </div>
+                                    </div>-->
                                 </div>
 
                                 <form method="post" action="{{ url('prescription/checkout') }}">
@@ -65,12 +54,12 @@
                                             </li>
                                             <li>
                                                 <div class="c-radio">
-                                                    <input type="radio" name="type_of_order" value="2" id="type-of-order2">
+                                                    <input type="radio" name="type_of_order" value="2" id="type-of-order2" onclick="orderTypeChange('2')" checked="">
                                                     <label for="type-of-order2">{{ __('Search and add medicines to cart') }}</label>
                                                 </div>
                                                 <div class="specify-note order-type-text choosTwo">
                                                     <p class="mb-1">{{ __('There are 2 items added in your cart') }}</p>
-                                                    <a href="javascript:void(0)" class="btn btn-outline-secondary btn-md px-3 py-2 mt-2" onclick="orderTypeChange('2')">{{ __('Add Medicines') }}</a>
+                                                    <a href="javascript:void(0)" class="btn btn-outline-secondary addMedicines btn-md px-3 py-2 mt-2">{{ __('Add Medicines') }}</a>
                                                 </div>
                                             </li>
                                             <li>
@@ -83,25 +72,9 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                        
-
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12">
-                                                <ul class="float-left inline-links">
-                                                    <li>
-                                                        <button type="submit"
-                                                                class="active continue-button continue-submit" disabled>
-                                                            Continue
-                                                        </button>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
                                     </div>
-
                                 </form>
-                              
+                                <p class="small-note"><small><b>{{ __('Note: ') }}</b>{{ __('We dispense full strips of tablets/capsules') }}</small></p>
                             </div>
                         </div>
                     </div>
@@ -121,27 +94,17 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                    <button type="submit" class="btn btn-primary continue-submit" disabled>Continue</button>
+                </div>
+            </div>
         </div>
     </section>
     <!--End order with prescription--->
 
 
-    <script>
-        
-//        function medicineOptionOne(){
-//            $(".choosOne").show();
-//            $(".choosThree").hide();
-//        }
-//        function medicineOptionTwo(){
-//            $(".choosOne").hide();
-//            $(".choosThree").hide();
-//        }
-//        function medicineOptionThree(){
-//            $(".choosThree").show();
-//            $(".choosOne").hide();
-//        }
-        
+    <script>        
         function orderTypeChange(orderType) {
             $('.continue-submit').removeAttr('disabled');
 
@@ -149,20 +112,27 @@
                 $('#type-of-orders-box').show();
                 $('#product-search-box').hide();
                 $('input[name=type_of_order]').prop('checked', false);
+                $('#type-of-order2').prop('checked', true);
                 $('.continue-submit').addAttr('disabled');
 
             } else if (orderType == "1") {
                 $('.choosOne').show();
                 $('.choosThree').hide();
+                $('.addMedicines').addClass('disabled');
             } else if (orderType == "2") {
-                $('#type-of-orders-box').hide();
                 $('.choosOne').hide();
                 $('.choosThree').hide();
-                $('#product-search-box').show();
+                $('.addMedicines').removeClass('disabled');
             } else if (orderType == "3") {
                 $('.choosThree').show();
                 $('.choosOne').hide();
+                $('.addMedicines').addClass('disabled');
             }
+            
+            $( ".addMedicines" ).click(function() {
+                 $('#type-of-orders-box').hide();
+                 $('#product-search-box').show();
+              });
         }
 
         function searchProduct(search) {
