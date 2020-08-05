@@ -27,11 +27,6 @@
                                     <div id="search-product-result">
 
                                     </div>
-<!--                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <a href="{{ url('cart') }}" class="btn btn-primary">Continue</a>
-                                        </div>
-                                    </div>-->
                                 </div>
 
                                 <form method="post" action="{{ url('prescription/checkout') }}">
@@ -42,7 +37,7 @@
                                         <ul>
                                             <li>
                                                 <div class="c-radio">
-                                                    <input type="radio" id="type-of-order1" name="type_of_order" value="1" onclick="orderTypeChange('1');">
+                                                    <input type="radio" id="type-of-order1" name="type_of_order" value="1" onclick="orderTypeChange('1');" checked>
                                                     <label for="type-of-order1">{{ __('Order everything as per prescription') }}</label>
                                                 </div>
                                                 <div class="specify-note choosOne hidden">
@@ -54,12 +49,12 @@
                                             </li>
                                             <li>
                                                 <div class="c-radio">
-                                                    <input type="radio" name="type_of_order" value="2" id="type-of-order2" onclick="orderTypeChange('2')" checked="">
+                                                    <input type="radio" name="type_of_order" value="2" id="type-of-order2" onclick="orderTypeChange('2')">
                                                     <label for="type-of-order2">{{ __('Search and add medicines to cart') }}</label>
                                                 </div>
                                                 <div class="specify-note order-type-text choosTwo">
                                                     <p class="mb-1">{{ __('There are 2 items added in your cart') }}</p>
-                                                    <a href="javascript:void(0)" class="btn btn-outline-secondary addMedicines btn-md px-3 py-2 mt-2">{{ __('Add Medicines') }}</a>
+                                                    <a href="javascript:void(0)" class="btn btn-outline-secondary addMedicines btn-md px-3 py-2 mt-2 disabled">{{ __('Add Medicines') }}</a>
                                                 </div>
                                             </li>
                                             <li>
@@ -96,7 +91,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-lg-12">
-                    <button type="submit" class="btn btn-primary continue-submit" disabled>Continue</button>
+                     <a href="{{ url('cart') }}" class="btn btn-primary">Continue</a>
                 </div>
             </div>
         </div>
@@ -129,7 +124,7 @@
                 $('.addMedicines').addClass('disabled');
             }
             
-            $( ".addMedicines" ).click(function() {
+              $( ".addMedicines" ).click(function() {
                  $('#type-of-orders-box').hide();
                  $('#product-search-box').show();
               });
@@ -151,10 +146,10 @@
                     prescriptionSearch: true,
                 },
                 success: function (response) {
-                     alert('hi');
+                     
                     response.forEach(function (product) {
                         let html = '' +
-                            '<form id="option-choice-form-' + product.id + '">' +
+                            '<form class="option-choice-form-' + product.id + '">' +
 
                             '<input type="hidden" name="id" value="' + product.id + '">' +
                             '<input type="hidden" name="quantity" value="1">' +
