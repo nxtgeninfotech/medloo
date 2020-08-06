@@ -193,12 +193,16 @@
                                 '</div>\n';
                         }
 
-                        html += '<a href="#" class="btn-add-cart"  onclick="addToCartFromPriscription(' + product.id + ')">ADD TO CART</a>\n' +
+                        html += '<a href="#" class="btn-add-cart add-cart-' + product.id + '"  onclick="addToCartFromPriscription(' + product.id + ')">ADD TO CART</a>\n' +
                             '<div class="item-quantity-box ">\n' +
-                            '<div class="item-quantity">\n' +
-                            '<button class="bttn bttn-left" id="minus"><span>-</span></button>\n' +
-                            '<input type="number" class="input nav-box-number" id="input">\n' +
-                            '<button class="bttn bttn-right" id="plus"><span>+</span></button>\n' +
+                            '<div class="item-quantity hidden"  id="qty-change-box-' + product.id + '">\n' +
+
+
+                            '<input type="hidden" id="product_id" value="' + product.id + '">' +
+                            '<button type="button" class="bttn bttn-left" id="minus"><span>-</span></button>\n' +
+                            '<input type="number" class="input nav-box-number" value="1" id="qty"  min="0" onchange="updateQuantity(' + product.id + ', this.value)" id="input">\n' +
+                            '<button type="button" class="bttn bttn-right" id="plus"><span>+</span></button>\n' +
+
                             '</div>\n' +
                             '</div>\n' +
                             '</div>\n' +
@@ -209,14 +213,49 @@
                         $('#search-product-result').append(html);
                     })
 
+                    $('#plus').click(function () {
+                        let newQty = parseInt($(this).parent().find('#qty').val()) + 1;
+
+                        $(this).parent().find('#qty').val(newQty);
+
+                        let product_id = $(this).parent().find('#product_id').val();
+
+                        updateQuantity(product_id, newQty);
+                    });
+
+                    $('#minus').click(function () {
+
+                        if ($(this).parent().find('#qty').val() == 0) {
+                            return true;
+                        }
+                        let newQty = parseInt($(this).parent().find('#qty').val()) - 1;
+                        $(this).parent().find('#qty').val(newQty);
+                        let product_id = $(this).parent().find('#product_id').val();
+
+                        updateQuantity(product_id, newQty);
+                    });
+
+
                 }
             })
         }
 
-        $('.close-icon').click(function(){
+        $('.close-icon').click(function () {
             $('#srchBarShwInfoNew').val('');
             $('#search-product-result').html('');
-        })
+        });
+
+
+        function updateQuantity(product_id, qty) {
+            $.post('{{ route('cart.updateQuantity') }}', {
+                _token: '{{ csrf_token() }}',
+                product_id: product_id,
+                quantity: qty
+            }, function (data) {
+                updateNavCart();
+            });
+        }
+
     </script>
 
 
