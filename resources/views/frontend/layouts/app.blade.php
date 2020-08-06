@@ -467,8 +467,8 @@
 
             function addToCartFromPriscription(pId) {
 
-                console.log(pId);
-                console.log($('#option-choice-form-' + pId).serializeArray());
+                $('.add-cart-' + pId).hide();
+                $('#qty-change-box-' + pId).removeClass('hidden');
 
                 $('.c-preloader').show();
                 $.ajax({
@@ -480,6 +480,8 @@
                         updateNavCart();
                     }
                 });
+
+
             }
 
 
