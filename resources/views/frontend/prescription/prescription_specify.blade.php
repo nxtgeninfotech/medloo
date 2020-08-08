@@ -88,15 +88,26 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5">
-                    <div class="valid-pre-wrapper h-100">
+                    <div class="valid-pres-wrapper h-100">
                         <div class="card box-shadow h-100">
                             <div class="card-body">
                                 <div class="title">
                                     <h3 class="heading-5 strong-600 mb-0">{{ __('Attached Prescriptions') }}</h3>
                                 </div>
-                                <div class="valid-pre d-flex">
-                                    <!-- Show image here -->
-                                </div>
+                                    <div class="valid-pres-slider attached-pre-box">
+                                        <div class="attached-prec-img">
+                                            <img src="http://localhost/medloo/public/uploads/image/atta-1.jpg" class="img-fluid">
+                                        </div>
+                                        <div class="attached-prec-img">
+                                            <img src="http://localhost/medloo/public/uploads/image/atta-2.jpg" class="img-fluid">
+                                        </div>
+                                        <div class="attached-prec-img">
+                                            <img src="http://localhost/medloo/public/uploads/image/atta-1.jpg" class="img-fluid">
+                                        </div>
+                                        <div class="attached-prec-img">
+                                            <img src="http://localhost/medloo/public/uploads/image/atta-2.jpg" class="img-fluid">
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -113,6 +124,22 @@
 
 
     <script>
+        
+$(document).ready(function(){
+		
+  $('.valid-pres-slider').slick({
+    dots: false,
+    speed: 1000,
+    autoplay: false,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    autoplaySpeed: 3000,
+    nextArrow: '<div class="slick-custom-arrow slick-custom-arrow-right"><i class="fa fa-angle-right"></i></div>',
+    prevArrow: '<div class="slick-custom-arrow slick-custom-arrow-left"><i class="fa fa-angle-left"></i></div>',
+  });
+
+}); 
+        
         function orderTypeChange(orderType) {
             $('.continue-submit').removeAttr('disabled');
 
