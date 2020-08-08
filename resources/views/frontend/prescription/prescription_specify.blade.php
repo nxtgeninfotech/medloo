@@ -30,6 +30,13 @@
                                     <div id="search-product-result">
 
                                     </div>
+
+                                    <div class="row mt-3">
+
+                                        <div class="col-lg-12">
+                                            <a href="{{ url('cart') }}" class="btn btn-primary">Continue</a>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <form method="post" action="{{ url('prescription/checkout') }}">
@@ -62,7 +69,11 @@
                                                         for="type-of-order2">{{ __('Search and add medicines to cart') }}</label>
                                                 </div>
                                                 <div class="specify-note order-type-text choosTwo">
-                                                    <p class="mb-1">{{ __('There are 2 items added in your cart') }}</p>
+                                                    @if(Session::has('cart'))
+                                                        <p class="mb-1">There are {{ count(Session::get('cart')) }}
+                                                            items added in your cart</p>
+                                                    @endif
+
                                                     <a href="javascript:void(0)"
                                                        class="btn btn-outline-secondary addMedicines btn-md px-3 py-2 mt-2 disabled">{{ __('Add Medicines') }}</a>
                                                 </div>
@@ -78,7 +89,16 @@
                                                 </div>
                                             </li>
                                         </ul>
+
+                                        <div class="row mt-3">
+                                            <div class="col-lg-12">
+                                                <input type="submit" class="btn btn-primary continue-submit"
+                                                       value="Continue">
+                                            </div>
+                                        </div>
                                     </div>
+
+
                                 </form>
                                 <p class="small-note">
                                     <small><b>{{ __('Note: ') }}</b>{{ __('We dispense full strips of tablets/capsules') }}
@@ -94,28 +114,18 @@
                                 <div class="title">
                                     <h3 class="heading-5 strong-600 mb-0">{{ __('Attached Prescriptions') }}</h3>
                                 </div>
-                                    <div class="valid-pres-slider attached-pre-box">
+                                <div class="valid-pres-slider attached-pre-box">
+
+                                    @foreach($prescriptions as $prescription)
                                         <div class="attached-prec-img">
-                                            <img src="http://localhost/medloo/public/uploads/image/atta-1.jpg" class="img-fluid">
+                                            <img src="{{ asset('uploads/prescription/').'/'.$prescription->image }}"
+                                                 class="img-fluid">
                                         </div>
-                                        <div class="attached-prec-img">
-                                            <img src="http://localhost/medloo/public/uploads/image/atta-2.jpg" class="img-fluid">
-                                        </div>
-                                        <div class="attached-prec-img">
-                                            <img src="http://localhost/medloo/public/uploads/image/atta-1.jpg" class="img-fluid">
-                                        </div>
-                                        <div class="attached-prec-img">
-                                            <img src="http://localhost/medloo/public/uploads/image/atta-2.jpg" class="img-fluid">
-                                        </div>
-                                    </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-lg-12">
-                    <a href="{{ url('cart') }}" class="btn btn-primary">Continue</a>
                 </div>
             </div>
         </div>
@@ -124,22 +134,22 @@
 
 
     <script>
-        
-$(document).ready(function(){
-		
-  $('.valid-pres-slider').slick({
-    dots: false,
-    speed: 1000,
-    autoplay: false,
-    slidesToShow: 2,
-    slidesToScroll: 2,
-    autoplaySpeed: 3000,
-    nextArrow: '<div class="slick-custom-arrow slick-custom-arrow-right"><i class="fa fa-angle-right"></i></div>',
-    prevArrow: '<div class="slick-custom-arrow slick-custom-arrow-left"><i class="fa fa-angle-left"></i></div>',
-  });
 
-}); 
-        
+        $(document).ready(function () {
+
+            $('.valid-pres-slider').slick({
+                dots: false,
+                speed: 1000,
+                autoplay: false,
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                autoplaySpeed: 3000,
+                nextArrow: '<div class="slick-custom-arrow slick-custom-arrow-right"><i class="fa fa-angle-right"></i></div>',
+                prevArrow: '<div class="slick-custom-arrow slick-custom-arrow-left"><i class="fa fa-angle-left"></i></div>',
+            });
+
+        });
+
         function orderTypeChange(orderType) {
             $('.continue-submit').removeAttr('disabled');
 

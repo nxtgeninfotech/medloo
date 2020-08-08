@@ -179,6 +179,9 @@
 
             @include('frontend.partials.modal')
 
+            @include('auth.modal')
+
+
             @if (\App\BusinessSetting::where('type', 'facebook_chat')->first()->value == 1)
                 <div id="fb-root"></div>
                 <!-- Your customer chat code -->
@@ -649,6 +652,7 @@
                         });
                 });
             }
+
 
         </script>
 

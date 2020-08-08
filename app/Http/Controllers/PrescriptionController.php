@@ -19,7 +19,9 @@ class PrescriptionController extends Controller
 
     public function prescription_specify()
     {
-        return view('frontend.prescription.prescription_specify');
+        $prescriptions = PrescriptionImage::myPrescription()->isDefault()->get();
+
+        return view('frontend.prescription.prescription_specify')->with(['prescriptions' => $prescriptions]);
     }
 
     public function add_image(Request $request)

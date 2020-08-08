@@ -52,7 +52,8 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -66,7 +67,8 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \App\User
      */
     protected function create(array $data)
@@ -82,21 +84,20 @@ class RegisterController extends Controller
             $customer->user_id = $user->id;
             $customer->save();
 
-            if(BusinessSetting::where('type', 'email_verification')->first()->value != 1){
+            if (BusinessSetting::where('type', 'email_verification')->first()->value != 1) {
                 $user->email_verified_at = date('Y-m-d H:m:s');
                 $user->save();
                 flash(__('Registration successfull.'))->success();
-            }
-            else {
+            } else {
                 $user->sendEmailVerificationNotification();
                 flash(__('Registration successfull. Please verify your email.'))->success();
             }
-        }
-        else {
-            if (\App\Addon::where('unique_identifier', 'otp_system')->first() != null && \App\Addon::where('unique_identifier', 'otp_system')->first()->activated){
+        } else {
+            if (\App\Addon::where('unique_identifier', 'otp_system')
+                    ->first() != null && \App\Addon::where('unique_identifier', 'otp_system')->first()->activated) {
                 $user = User::create([
                     'name' => $data['name'],
-                    'phone' => '+'.$data['country_code'].$data['phone'],
+                    'phone' => '+' . $data['country_code'] . $data['phone'],
                     'password' => Hash::make($data['password']),
                     'verification_code' => rand(100000, 999999)
                 ]);
@@ -104,18 +105,19 @@ class RegisterController extends Controller
                 $customer = new Customer;
                 $customer->user_id = $user->id;
                 $customer->save();
-                
-                if (\App\Addon::where('unique_identifier', 'otp_system')->first() != null && \App\Addon::where('unique_identifier', 'otp_system')->first()->activated){
+
+                if (\App\Addon::where('unique_identifier', 'otp_system')
+                        ->first() != null && \App\Addon::where('unique_identifier', 'otp_system')->first()->activated) {
                     $otpController = new OTPVerificationController;
                     $otpController->send_code($user);
                 }
             }
         }
 
-        if(Cookie::has('referral_code')){
+        if (Cookie::has('referral_code')) {
             $referral_code = Cookie::get('referral_code');
             $referred_by_user = User::where('referral_code', $referral_code)->first();
-            if($referred_by_user != null){
+            if ($referred_by_user != null) {
                 $user->referred_by = $referred_by_user->id;
                 $user->save();
             }
@@ -127,16 +129,22 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-            if(User::where('email', $request->email)->first() != null){
+            if (User::where('email', $request->email)->first() != null) {
                 flash('EmailPhone already exists.');
+
                 return back();
             }
-        }
-        elseif (User::where('phone', '+'.$request->country_code.$request->phone)->first() != null) {
+        } elseif (User::where('phone', '+' . $request->country_code . $request->phone)->first() != null) {
             flash('Phone already exists.');
+
             return back();
         }
 
+        if (! $request->password_confirmation || empty($request->password_confirmation)) {
+            $request->request->add([
+                'password_confirmation' => $request->password
+            ]);
+        }
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
@@ -144,15 +152,14 @@ class RegisterController extends Controller
         $this->guard()->login($user);
 
         return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+            ? : redirect($this->redirectPath());
     }
 
     protected function registered(Request $request, $user)
     {
         if ($user->email == null) {
             return redirect()->route('verification');
-        }
-        else {
+        } else {
             return redirect()->route('home');
         }
     }

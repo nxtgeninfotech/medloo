@@ -510,7 +510,7 @@
                                 </div>-->
                                 <div class="d-block btn-order-upload">
                                     <div class="order-upload" id="order-prescription-upload">
-                                        <a href="{{ route('order-with-prescription') }}" class="btn btn-primary">
+                                        <a href="#"  onclick="signUpModal('order-with-prescription')" class="btn btn-primary">
                                             <!--<i class="la la-heart-o d-inline-block nav-box-icon"></i>-->
                                             <span class="nav-box-text d-inline-block">{{__('Upload')}}</span>
                                         </a>
