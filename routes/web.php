@@ -15,7 +15,23 @@
 //Route::get('/demo/cron_1', 'DemoController@cron_1');
 //Route::get('/demo/cron_2', 'DemoController@cron_2');
 
+use Illuminate\Support\Facades\Session;
+
 Auth::routes(['verify' => true]);
+
+Route::get('check-auth', function () {
+    if (request()->redirect_url && request()->redirect_url != null) {
+        Session::put('link', request()->redirect_url);
+    }
+
+    if (request()->user()) {
+        return "true";
+    }
+
+    return "false";
+});
+
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::post('/language', 'LanguageController@changeLanguage')->name('language.change');
 Route::post('/currency', 'CurrencyController@changeCurrency')->name('currency.change');
@@ -179,7 +195,7 @@ Route::group(['middleware' => ['user', 'verified']], function () {
     //Prescription routes
     Route::get('order-with-prescription', 'PrescriptionController@order_with_prescription')
         ->name('order-with-prescription');
-        Route::get('order-with-prescription/specify', 'PrescriptionController@prescription_specify');
+    Route::get('order-with-prescription/specify', 'PrescriptionController@prescription_specify');
 
     Route::group(['prefix' => 'ajax/prescription/image'], function () {
         Route::get('list', 'PrescriptionController@list_image');
@@ -188,7 +204,7 @@ Route::group(['middleware' => ['user', 'verified']], function () {
         Route::post('update-default', 'PrescriptionController@update_default_image');
     });
 
-    Route::post('prescription/checkout','PrescriptionController@checkout');
+    Route::post('prescription/checkout', 'PrescriptionController@checkout');
 
 
 });
