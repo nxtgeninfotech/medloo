@@ -13,11 +13,11 @@ class CreatePrescriptionTable extends Migration
      */
     public function up()
     {
-        Schema::create('prescription', function (Blueprint $table) {
+        Schema::create('prescriptions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->json('images');
             $table->integer('action_id');
-            $table->integer('duration');
+            $table->integer('duration')->nullable();
             $table->timestamp('created_at');
         });
     }
@@ -29,6 +29,6 @@ class CreatePrescriptionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prescription');
+        Schema::dropIfExists('prescriptions');
     }
 }

@@ -9,7 +9,8 @@
             },
             success: function (response) {
                 if (response == "true") {
-                    window.location.replace("order-with-prescription");
+                    let path  = '{{ route("order-with-prescription") }}';
+                    window.location.replace(path);
                 } else {
                     $('#signUpModal').modal('toggle');
 

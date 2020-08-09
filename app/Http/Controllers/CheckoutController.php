@@ -418,7 +418,7 @@ class CheckoutController extends Controller
 
         if ($request->session()->get('prescription') == true) {
 
-            $this->prescription_order();
+            $this->prescription_order($request);
 
             return view('frontend.prescription.order_confirmation', compact('order'));
         }
