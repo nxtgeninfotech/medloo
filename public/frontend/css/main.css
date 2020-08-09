@@ -4868,7 +4868,7 @@ input[type="radio"]:checked + .radio-box:after {
 
 .add-new-address .form-control{font-size:13px;border-radius:5px;}
 .signup-modal .modal-dialog{max-width:900px;overflow:hidden;border-radius:5px}
-.signup-modal .close{position:absolute;top:0.5rem;right:1rem;}
+.signup-modal .close{position:absolute;top:0.5rem;right:1rem;z-index:1}
 .signup-modal .signup-leftside, .signup-modal .signup-rightside{padding:50px}
 .signup-modal .bg-img{position:relative;background-image:url('http://localhost/medloo/public/uploads/image/medical-background.png');}
 .signup-form form{margin-top:50px;}

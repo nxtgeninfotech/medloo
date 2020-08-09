@@ -15,26 +15,26 @@
                                         {{ __('Medicines') }}
                                     </h3>
                                 </div>
-                                <div id="product-search-box" class="hidden medicines-search-box">
-                                    <div class="back-to-page">
-                                        <a href="#" onclick="orderTypeChange('0')" class="btn-back-small"> <span
-                                                class="la la-arrow-left"></span> {{ __('Back to options') }}</a>
-                                    </div>
-                                    <div class="medicines-search-input">
-                                        <span class="search-icon"><i class="fa fa-search"></i></span>
-                                        <input type="text" class="form-control" id="srchBarShwInfoNew" value=""
-                                               placeholder="Search medicines and health products" autocomplete="off"
-                                               onkeyup="searchProduct(this.value)">
-                                        <span class="close-icon"><i class="fa fa-times-circle"></i></span>
-                                    </div>
-                                    <div id="search-product-result">
+                                <div id="product-search-box" class="hidden">
+                                    <div class="medicines-search-box d-flex flex-column">
+                                        <div class="back-to-page">
+                                            <a href="#" onclick="orderTypeChange('0')" class="btn-back-small"> <span
+                                                    class="la la-arrow-left"></span> {{ __('Back to options') }}</a>
+                                        </div>
+                                        <div class="medicines-search-input">
+                                            <span class="search-icon"><i class="fa fa-search"></i></span>
+                                            <input type="text" class="form-control" id="srchBarShwInfoNew" value=""
+                                                   placeholder="Search medicines and health products" autocomplete="off"
+                                                   onkeyup="searchProduct(this.value)">
+                                            <span class="close-icon"><i class="fa fa-times-circle"></i></span>
+                                        </div>
+                                        <div id="search-product-result">
 
-                                    </div>
-
-                                    <div class="row mt-3">
-
-                                        <div class="col-lg-12">
-                                            <a href="{{ url('cart') }}" class="btn btn-primary">Continue</a>
+                                        </div>
+                                        <div class="row mt-auto">
+                                            <div class="col-lg-12">
+                                                <a href="{{ url('cart') }}" class="btn btn-primary">Continue</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
