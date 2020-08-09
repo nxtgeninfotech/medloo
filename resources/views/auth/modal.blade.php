@@ -45,7 +45,7 @@
      aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content border-0">
-            <button type="button" onclick="closeModal()">
+            <button type="button" class="close" onclick="closeModal()">
                 <span aria-hidden="true">&times;</span>
             </button>
             <div class="row mx-0">
@@ -71,7 +71,7 @@
                         <div id="LoginModel">
                             <div class="title">
                                 <h3 class="heading-3 strong-600 mb-0">
-                                    {{ __('Sign Up') }}
+                                    {{ __('Sign In') }}
                                 </h3>
                                 <p>
                                     <small>{{ __('Please enter your Mobile number to receive One Time Password (OTP)') }}</small>
