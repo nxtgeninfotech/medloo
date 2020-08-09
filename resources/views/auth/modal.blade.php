@@ -71,7 +71,7 @@
                         <div id="LoginModel">
                             <div class="title">
                                 <h3 class="heading-3 strong-600 mb-0">
-                                    {{ __('Sign Up') }}
+                                    {{ __('Sign In') }}
                                 </h3>
                                 <p>
                                     <small>{{ __('Please enter your Mobile number to receive One Time Password (OTP)') }}</small>
