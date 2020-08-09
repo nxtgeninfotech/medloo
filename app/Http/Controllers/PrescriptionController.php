@@ -28,9 +28,8 @@ class PrescriptionController extends Controller
     {
         $item = new PrescriptionImage();
         $item->user_id = Auth::user()->id;
-        $item->image = CommonHelper::createImage($request->image, 'uploads/prescription/');
+        $item->image = CommonHelper::createImage($request->image, 'public/uploads/prescription/');
         $item->save();
-
         return "success";
     }
 

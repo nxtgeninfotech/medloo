@@ -9,7 +9,7 @@
             },
             success: function (response) {
                 if (response == "true") {
-                    window.location.replace("/order-with-prescription");
+                    window.location.replace("order-with-prescription");
                 } else {
                     $('#signUpModal').modal('toggle');
 
