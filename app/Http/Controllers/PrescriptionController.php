@@ -30,6 +30,7 @@ class PrescriptionController extends Controller
         $item->user_id = Auth::user()->id;
         $item->image = CommonHelper::createImage($request->image, 'public/uploads/prescription/');
         $item->save();
+
         return "success";
     }
 
@@ -61,7 +62,9 @@ class PrescriptionController extends Controller
     public function checkout(Request $request)
     {
         $request->session()->put($request->all());
-        return view('frontend.prescription.checkout');
+        $prescriptions = PrescriptionImage::myPrescription()->isDefault()->get();
+
+        return view('frontend.prescription.checkout')->with(['prescriptions' => $prescriptions]);
     }
 
 

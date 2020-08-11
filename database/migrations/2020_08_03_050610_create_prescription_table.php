@@ -15,7 +15,7 @@ class CreatePrescriptionTable extends Migration
     {
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->json('images');
+            $table->text('images');
             $table->integer('action_id');
             $table->integer('duration')->nullable();
             $table->timestamp('created_at');

@@ -5,6 +5,22 @@
     <div id="page-content">
 
 
+        <section class="slice-xs sct-color-2 border-bottom">
+            <div class="container container-sm">
+                <div class="row cols-delimited justify-content-center">
+                    <div class="col">
+                        <div class="icon-block icon-block--style-1-v5 text-center active">
+
+                            <div class="block-content d-none d-md-block">
+                                <h3 class="heading heading-sm strong-300 c-gray-light text-capitalize"> {{__('Delivery Address ')}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <section class="py-4 gry-bg">
             <div class="container">
                 <div class="row cols-xs-space cols-sm-space cols-md-space">
@@ -144,14 +160,29 @@
                                 </div>
                                 <div class="col-md-6 text-right">
                                     <button type="submit"
-                                            class="btn btn-styled btn-base-1">PLACE ORDER</a>
+                                            class="btn btn-styled btn-base-1">PLACE ORDER
+                                    </button>
                                 </div>
                             </div>
                         </form>
                     </div>
 
                     <div class="col-lg-4 ml-lg-auto">
+                        <div class="card-body">
+                            <div class="title">
+                                <h3 class="heading-5 strong-600 mb-0">{{ __('Attached Prescriptions') }}</h3>
+                            </div>
+                            <div class="valid-pres-slider attached-pre-box">
 
+                                @foreach($prescriptions as $prescription)
+                                    <div class="attached-prec-img">
+                                        <img src="{{ asset('uploads/prescription/').'/'.$prescription->image }}"
+                                             class="img-fluid" id="pre-img-{{ $prescription->id }}"
+                                             onclick="openImageInModal(this.id)">
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -235,6 +266,15 @@
         </div>
     </div>
 
+
+    <!-- The Modal -->
+    <div id="myModal1" class="modal" style="z-index: 9999;">
+        <button class="close-modal close">&times;</button>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+
 @endsection
 
 @section('script')
@@ -242,5 +282,45 @@
         function add_new_address() {
             $('#new-address-modal').modal('show');
         }
+
+        $(document).ready(function () {
+
+            $('.valid-pres-slider').slick({
+                dots: false,
+                speed: 1000,
+                autoplay: false,
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                autoplaySpeed: 3000,
+                nextArrow: '<div class="slick-custom-arrow slick-custom-arrow-right"><i class="fa fa-angle-right"></i></div>',
+                prevArrow: '<div class="slick-custom-arrow slick-custom-arrow-left"><i class="fa fa-angle-left"></i></div>',
+            });
+        });
+
+
+        function openImageInModal(id) {
+            // Get the modal
+            var modal = document.getElementById("myModal1");
+
+            // Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById(id);
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            img.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close-modal")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+        }
+
+
     </script>
 @endsection
