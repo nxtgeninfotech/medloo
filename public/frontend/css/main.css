@@ -4883,7 +4883,7 @@ input[type="radio"]:checked + .radio-box:after {
 .medicines-search-input .form-control{padding-left:40px}
 
 .medicines-list-box{border:1px solid #e6e6e6;border-top:0}
-.medicines-list-box .medicines-item{padding:0.5rem 0;border:1px solid #e6e6e6;}
+.medicines-list-box .medicines-item{padding:0.5rem 0;}
 .medicines-item .medicines-name{font-size:14px;font-weight:600;min-height:34px;line-height:16px;}
 .medicines-item .medicines-price{font-size:14px;font-weight:600}
 .medicines-item .btn-add-cart{font-size:12px;font-weight:600;color:#2eaeaf;padding:4px 0;display:inline-block;}
@@ -4898,9 +4898,9 @@ input[type="radio"]:checked + .radio-box:after {
 .item-quantity input[type=number]::-webkit-inner-spin-button,
 .item-quantity input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
 
-.valid-pres-slider .attached-prec-img{padding:5px;}
-.valid-pres-slider .attached-prec-img:nth-child(odd){padding-left:0px;}
-.valid-pres-slider .attached-prec-img:nth-child(even){padding-right:0px;}
+.valid-pres-slider .attached-prec-img{padding-right:5px;}
+/*.valid-pres-slider .attached-prec-img:nth-child(odd){padding-left:0px;}
+.valid-pres-slider .attached-prec-img:nth-child(even){padding-right:0px;}*/
 .valid-pres-slider .slick-custom-arrow {position:absolute;-webkit-transform:translateY(-50%);transform:translateY(-50%);z-index:100;padding:8px 6px;font-size:14px;background-color:#fff;color:#000;}
 .valid-pres-slider .slick-custom-arrow:hover{cursor:pointer;background-color:#2eaeaf;color:#fff;}
 .valid-pres-slider .slick-custom-arrow-right{right:0;top:50%;}
@@ -4914,7 +4914,7 @@ input[type="radio"]:checked + .radio-box:after {
 .cart-page .cart-item .product-quantity .input-group{max-width:100px;}
 .cart-page .cart-item .product-quantity .input-number{padding-left:0;padding-right:0}
 .cart-page .cart-item .product-total{display:inline-block;font-weight:600}
-.cart-page .cart-item .product-remove{display:inline-block;margin-left:6px;}
+.cart-page .cart-item .product-remove{display:inline-block;margin-left:4px;}
 .cart-page .cart-item .product-remove a{display:inline-block;width:36px;border:1px solid #ddd;padding:5px 0px;border-radius:3px;}
 .cart-page .cart-item .product-remove:hover{background-color:#2eaeaf;border-color:#2eaeaf}
 .cart-page .cart-item .product-remove:hover a{color:#fff !important}
