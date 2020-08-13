@@ -2,6 +2,100 @@
 
 @section('content')
 
+
+<style type="text/css">
+    /* your custom style goes here */
+body {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+</style>
+
+
     <!--Start order with prescription--->
     <section class="medicines-specify-options my-4 mb-5">
         <div class="container">
@@ -48,7 +142,7 @@
                                             <li>
                                                 <div class="c-radio">
                                                     <input type="radio" id="type-of-order1" name="type_of_order"
-                                                           value="1" onclick="orderTypeChange('1');" checked>
+                                                           value="1" onclick="orderTypeChange('1');">
                                                     <label
                                                         for="type-of-order1">{{ __('Order everything as per prescription') }}</label>
                                                 </div>
@@ -64,18 +158,24 @@
                                             <li>
                                                 <div class="c-radio">
                                                     <input type="radio" name="type_of_order" value="2"
-                                                           id="type-of-order2" onclick="orderTypeChange('2')">
+                                                           id="type-of-order2" onclick="orderTypeChange('2')"
+                                                           @if(Session::has('cart') && count(Session::get('cart')) > 0 )
+                                                           checked
+                                                        @endif
+                                                    >
                                                     <label
                                                         for="type-of-order2">{{ __('Search and add medicines to cart') }}</label>
                                                 </div>
                                                 <div class="specify-note order-type-text choosTwo">
-                                                    @if(Session::has('cart'))
+                                                    @if(Session::has('cart') && count(Session::get('cart')) > 0 )
                                                         <p class="mb-1">There are {{ count(Session::get('cart')) }}
                                                             items added in your cart</p>
                                                     @endif
 
                                                     <a href="javascript:void(0)"
                                                        class="btn btn-outline-secondary addMedicines btn-md px-3 py-2 mt-2 disabled">{{ __('Add Medicines') }}</a>
+
+
                                                 </div>
                                             </li>
                                             <li>
@@ -93,7 +193,7 @@
                                         <div class="row mt-3">
                                             <div class="col-lg-12">
                                                 <input type="submit" class="btn btn-primary continue-submit"
-                                                       value="Continue">
+                                                       value="Continue" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -119,7 +219,8 @@
                                     @foreach($prescriptions as $prescription)
                                         <div class="attached-prec-img">
                                             <img src="{{ asset('uploads/prescription/').'/'.$prescription->image }}"
-                                                 class="img-fluid">
+                                                 class="img-fluid" id="pre-img-{{ $prescription->id }}"
+                                                 onclick="openImageInModal(this.id)">
                                         </div>
                                     @endforeach
                                 </div>
@@ -131,6 +232,16 @@
         </div>
     </section>
     <!--End order with prescription--->
+
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal" style="z-index: 9999;">
+        <button class="close-modal close">&times;</button>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
 
 
     <script>
@@ -151,14 +262,14 @@
         });
 
         function orderTypeChange(orderType) {
-            $('.continue-submit').removeAttr('disabled');
+            $('.continue-submit').attr('disabled', false);
 
             if (orderType == "0") {
                 $('#type-of-orders-box').show();
                 $('#product-search-box').hide();
                 $('input[name=type_of_order]').prop('checked', false);
                 $('#type-of-order2').prop('checked', true);
-                $('.continue-submit').addAttr('disabled');
+                $('.continue-submit').attr('disabled', true);
 
             } else if (orderType == "1") {
                 $('.choosOne').show();
@@ -168,6 +279,7 @@
                 $('.choosOne').hide();
                 $('.choosThree').hide();
                 $('.addMedicines').removeClass('disabled');
+                $('.continue-submit').attr('disabled', true);
             } else if (orderType == "3") {
                 $('.choosThree').show();
                 $('.choosOne').hide();
@@ -248,7 +360,7 @@
                             '</div>';
 
                         $('#search-product-result').append(html);
-                    })
+                    });
 
                     $('#plus').click(function () {
                         let newQty = parseInt($(this).parent().find('#qty').val()) + 1;
@@ -292,6 +404,36 @@
                 updateNavCart();
             });
         }
+
+
+        if ($('#type-of-order2').prop('checked') == true) {
+            orderTypeChange(2);
+        }
+
+
+        function openImageInModal(id) {
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById(id);
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            img.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close-modal")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+        }
+
 
     </script>
 
