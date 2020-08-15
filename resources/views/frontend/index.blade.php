@@ -6,16 +6,16 @@
             <div class="row no-gutters position-relative">
                 <div class="col-lg-12 position-static order-2 order-lg-0">
                     <div class="category-sidebar">
-                        <div class="all-category d-none d-lg-block">
+<!--                        <div class="all-category d-none d-lg-block">
                             <span >{{__('Categories')}}</span>
                             <a href="{{ route('categories.all') }}">
                                 <span class="d-none d-lg-inline-block">{{__('See All')}} ></span>
                             </a>
-                        </div>
-                        <ul class="categories no-scrollbar">
+                        </div>-->
+                        <ul class="categories no-scrollbar home-menu">
                             <li class="d-lg-none">
                                 <a href="{{ route('categories.all') }}">
-                                    <img class="cat-image lazyload" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/icons/list.png') }}" width="30" alt="{{ __('All Category') }}">
+                                    <!--<img class="cat-image lazyload" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/icons/list.png') }}" width="30" alt="{{ __('All Category') }}">-->
                                     <span class="cat-name">{{__('All')}} <br> {{__('Categories')}}</span>
                                 </a>
                             </li>
@@ -25,7 +25,7 @@
                                 @endphp
                                 <li class="category-nav-element" data-id="{{ $category->id }}">
                                     <a href="{{ route('products.category', $category->slug) }}">
-                                        <img class="cat-image lazyload" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset($category->icon) }}" width="30" alt="{{ __($category->name) }}">
+                                        <!--<img class="cat-image lazyload" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset($category->icon) }}" width="30" alt="{{ __($category->name) }}">-->
                                         <span class="cat-name">{{ __($category->name) }}</span>
                                     </a>
                                     @if(count($category->subcategories)>0)
@@ -199,9 +199,9 @@
         </div>
     </div>
 
-    <div id="section_featured">
+<!--    <div id="section_featured">
 
-    </div>
+    </div>-->
 
     <div id="section_best_selling">
 

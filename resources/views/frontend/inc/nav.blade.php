@@ -61,7 +61,7 @@
                         @endif
                         @auth
                         <li>
-                            <a href="{{ route('dashboard') }}" class="top-bar-item">{{__('My Panel')}}</a>
+                            <a href="{{ route('dashboard') }}" class="top-bar-item">{{__('My Dashboard')}}</a>
                         </li>
                         <li>
                             <a href="{{ route('logout') }}" class="top-bar-item">{{__('Logout')}}</a>
