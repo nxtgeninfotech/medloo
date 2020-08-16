@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    
+
     <!--Start order with prescription--->
     <section class="medicines-specify-options my-4 mb-5">
         <div class="container">
@@ -33,7 +33,7 @@
                                         </div>
                                         <div class="row mt-auto">
                                             <div class="col-lg-12">
-                                                <a href="{{ url('cart') }}" class="btn btn-primary">Continue</a>
+                                                <a href="{{ url('cart') .'?type_of_order=2' }}" class="btn btn-primary">Continue</a>
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +80,6 @@
 
                                                     <a href="javascript:void(0)"
                                                        class="btn btn-outline-secondary addMedicines btn-md px-3 py-2 mt-2 disabled">{{ __('Add Medicines') }}</a>
-
 
                                                 </div>
                                             </li>

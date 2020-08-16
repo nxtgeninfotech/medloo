@@ -231,13 +231,12 @@ class CheckoutController extends Controller
         $shipping_info = $data;
         $request->session()->put('shipping_info', $shipping_info);
 
-        $request->session()->forget('prescription');
-
 
         if (Str::is('*prescription*', url()->previous())) {
 
             $request->session()->put('cart', collect([]));
             $request->session()->put('prescription', 'true');
+
 
             $request->request->add([
                 "payment_option" => "cash_on_delivery"

@@ -80,8 +80,11 @@ class OrderController extends Controller
         $admin_user_id = User::where('user_type', 'admin')->first()->id;
         $orders = DB::table('orders')
             ->orderBy('code', 'desc')
-            ->join('order_details', 'orders.id', '=', 'order_details.order_id')
-            ->where('order_details.seller_id', $admin_user_id)
+            ->leftjoin('order_details', function ($join) use ($admin_user_id) {
+                $join->on('orders.id', '=', 'order_details.order_id')
+                    ->where('seller_id', $admin_user_id);
+            })
+            ->leftjoin('prescription_orders', 'orders.id', '=', 'prescription_orders.order_id')
             ->select('orders.id')
             ->distinct();
 
@@ -98,6 +101,7 @@ class OrderController extends Controller
             $orders = $orders->where('code', 'like', '%' . $sort_search . '%');
         }
         $orders = $orders->paginate(15);
+
 
         return view('orders.index',
             compact('orders', 'payment_status', 'delivery_status', 'sort_search', 'admin_user_id'));

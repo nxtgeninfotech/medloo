@@ -25,4 +25,9 @@ class Order extends Model
     {
         return $this->belongsTo(PickupPoint::class);
     }
+
+    public function prescriptionOrder ()
+    {
+        return $this->hasOne(PrescriptionOrder::class);
+    }
 }

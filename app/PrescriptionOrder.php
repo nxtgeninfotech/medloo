@@ -34,4 +34,11 @@ class PrescriptionOrder extends Model
     {
         $this->belongsTo('App\Order');
     }
+
+    public function setImagePath($image)
+    {
+        return asset('uploads/prescription/'.$image);
+    }
+
+
 }

@@ -2312,7 +2312,7 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 	vertical-align:middle
 }
 #container .invoice-details {
-	min-width:200px;
+	min-width:400px;
 	margin:0 auto
 }
 #container .invoice-details td {
@@ -6017,7 +6017,7 @@ blockquote {
 	transition:background-color,0.3s
 }
 .nav-tabs li a{
-	color:#fff !important;	
+	color:#fff !important;
 }
 .tab-base .nav-tabs>.active>a,.tab-base .nav-tabs>.active a:hover,.tab-base .nav-tabs>.active>a:focus {
 	border-color:transparent;
