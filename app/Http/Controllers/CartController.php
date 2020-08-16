@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\SubSubCategory;
 use App\Category;
+use Illuminate\Support\Str;
 use Session;
 use App\Color;
 use Cookie;
@@ -14,6 +15,13 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
+        $request->session()->forget('prescription');
+
+        if (Str::is('*prescription*', url()->previous())) {
+            $request->session()->put('prescription', 'true');
+            $request->session()->put('type_of_order', $request->type_of_order);
+        }
+
         //dd($cart->all());
         $categories = Category::all();
 

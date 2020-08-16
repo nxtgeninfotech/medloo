@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Prescription extends Model
+class PrescriptionOrder extends Model
 {
     protected $fillable = [
+        'order_id',
         'images',
         'action_id',
         'duration'
@@ -28,4 +29,16 @@ class Prescription extends Model
             $model->created_at = $model->freshTimestamp();
         });
     }
+
+    public function order()
+    {
+        $this->belongsTo('App\Order');
+    }
+
+    public function setImagePath($image)
+    {
+        return asset('uploads/prescription/'.$image);
+    }
+
+
 }
