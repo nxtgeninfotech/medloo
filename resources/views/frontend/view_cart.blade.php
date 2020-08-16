@@ -107,7 +107,8 @@
                                             //     $product_name_with_choice .= ' - '.$cartItem[$str];
                                             // }
                                             @endphp
-                                            <div class="row cart-item">
+                                            <div class="cart-item">
+                                            <div class="row">
                                                 <div class="col-2 pr-0 mr-0">
                                                 <div class="product-image">
                                                     <a href="#">
@@ -115,42 +116,61 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                                <div class="col-10 pl-0 ml-0">
-                                                <div class="product-name">
-                                                    <span>{{ $product_name_with_choice }}</span>
-                                                </div>
-
-                                                <div class="product-price">
-                                                    <span>{{ single_price($cartItem['price']) }}</span>
-                                                </div>
-
-                                                <div class="product-quantity d-inline-flex">
-                                                    @if($cartItem['digital'] != 1)
-                                                        <div class="input-group input-group--style-2">
-                                                            <span class="input-group-btn">
-                                                                <button class="btn btn-number btn-minus" type="button" data-type="minus" data-field="quantity[{{ $key }}]">
-                                                                    <i class="la la-minus"></i>
-                                                                </button>
-                                                            </span>
+                                                <div class="col-10 pl-0 ml-0 d-flex flex-column">
+                                                    <div class="cart-pro-name d-flex">
+                                                        <div class="product-detail w-100">
+                                                            <div class="product-name">
+                                                                <span>{{ $product_name_with_choice }}</span>
+                                                            </div>
+                                                            <div class="product-short-info">
+                                                                <span class="text-gray">Medlife Wellness Pvt Ltd</span>
+                                                            </div>
+                                                            <div class="product-delivery-date">
+                                                                <span> <i class="la la-truck"></i> Delivery between Aug 18th-20th</span>
+                                                            </div>
+                                                        </div>                                                       
+                                                        <div class="cart-pro-price justify-content-end text-right">
+                                                            <!-- <div class="product-price">
+                                                                <span>{{ single_price($cartItem['price']) }}</span>
+                                                            </div>-->
+                                                            <div class="product-total">
+                                                                <span>{{ single_price(($cartItem['price']+$cartItem['tax'])*$cartItem['quantity']) }}</span>
+                                                            </div>
+                                                            <div class="product-off">
+                                                                <span>15% Off</span>
+                                                            </div>
+                                                            <div class="product-mrp">
+                                                                <span class="mr-1 text-gray">MRP:</span><strike>Rs14,899.00</strike>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cart-pro-info d-flex mt-auto">
+                                                        <div class="product-quantity w-50 text-left">
+                                                            @if($cartItem['digital'] != 1)
+                                                            <div class="input-group input-group--style-2">
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn btn-number btn-minus" type="button" data-type="minus" data-field="quantity[{{ $key }}]">
+                                                                        <i class="la la-minus"></i>
+                                                                    </button>
+                                                                </span>
                                                                 <input type="text" name="quantity[{{ $key }}]" class="form-control input-number text-center" placeholder="1" value="{{ $cartItem['quantity'] }}" min="1" max="10" onchange="updateQuantity({{ $key }}, this)">
                                                                 <span class="input-group-btn">
-                                                                <button class="btn btn-number btn-plus" type="button" data-type="plus" data-field="quantity[{{ $key }}]">
-                                                                    <i class="la la-plus"></i>
-                                                                </button>
-                                                            </span>
+                                                                    <button class="btn btn-number btn-plus" type="button" data-type="plus" data-field="quantity[{{ $key }}]">
+                                                                        <i class="la la-plus"></i>
+                                                                    </button>
+                                                                </span>
+                                                            </div>
+                                                            @endif
                                                         </div>
-                                                    @endif
-                                                </div>
-                                                <div class="product-total">
-                                                    <span>{{ single_price(($cartItem['price']+$cartItem['tax'])*$cartItem['quantity']) }}</span>
-                                                </div>
-                                                <div class="product-remove">
-                                                    <a href="#" onclick="removeFromCartView(event, {{ $key }})" class="text-center">
-                                                        <i class="la la-trash"></i>
-                                                    </a>
+                                                        <div class="product-remove w-50 text-right">
+                                                            <a href="#" onclick="removeFromCartView(event, {{ $key }})" class="text-center">
+                                                                <i class="la la-trash"></i> {{__('Remove')}}
+                                                            </a>
+                                                        </div>   
+                                                    </div>    
                                                 </div>
                                             </div>
-                                </div>
+                                        </div>
                                         @endforeach
                                 </div>
                        
