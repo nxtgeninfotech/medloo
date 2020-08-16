@@ -64,10 +64,59 @@ class CategoriesSeeder extends Seeder
             ]
         ];
     }
+
     protected function getPersonalCare()
     {
         return [
-
+            'Oral Care' => [
+                'Tooth Paste & Powder',
+                'Tooth Brush',
+                'Mouth wash',
+                'Mouth Fresheners'
+            ],
+            'Skin Care' => [
+                'Skin Care',
+                'Face wash & Cleansers',
+                'Face wash & Cleansers',
+                'Lotions & Sunscreens',
+                'Talcum Powder',
+                'Face wipes',
+            ],
+            'Hair Care' => [
+                'Shampoos',
+                'Conditioners',
+                'Hair oils',
+                'Hair colors',
+                'Styling creams & gels',
+                'Hair serums',
+                'Hair spray',
+            ],
+            'Eye care' => [
+                'Eye care',
+                'Eyeliner',
+                'Contact Lenses & solutions'
+            ],
+            'Lip care' => [],
+            'Hand & Foot care' => [
+                'Hand wash',
+                'Hand Sanitizers',
+                'Hand Creams',
+                'Foot Creams',
+                'Miscellaneous'
+            ],
+            'Feminine Hygiene' => [
+                'Sanitary napkins',
+                'Tampons & Menstrual cups',
+                'Tampons & Menstrual cups',
+                'Intimate Hygiene',
+                'Hair Removal',
+                'Others'
+            ],
+            'Bath & Shower' => [
+                'Bathing  Soaps & Bar',
+                'Shower gel',
+                'Body wash'
+            ]
         ];
     }
 
@@ -76,7 +125,7 @@ class CategoriesSeeder extends Seeder
         return [
             'Medicines' => $this->getMedicines(),
             'Ayurveda' => $this->getAyurveda(),
-            'Personal Care'=>$this->getPersonalCare()
+            'Personal Care' => $this->getPersonalCare()
         ];
     }
 
@@ -113,6 +162,8 @@ class CategoriesSeeder extends Seeder
 
     protected function getColumnValues($name)
     {
+        $name = trim($name);
+
         return [
             'name' => $name,
             'slug' => Str::slug($name),
