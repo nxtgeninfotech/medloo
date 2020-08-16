@@ -50,8 +50,7 @@
 
                                         <div class="uploaded-pre-show  @if(count($prescriptions) > 0) hidden  @endif">
                                         <span class="uploaded-demo-img">
-                                            <img src='{{ asset('uploads/image/prescription-demo.png')}}'
-                                                 class="img-fluid">
+                                            <img class='img-fluid' src='{{ asset('uploads/image/prescription-demo.png')}}'>
                                         </span>
                                             <span class="uploaded-demo-text">
                                             <span
@@ -70,8 +69,7 @@
                                                         <span class='la la-times-circle'></span>
                                                     </a>
                                                     <a href='' class='pre-img'>
-                                                        <img
-                                                            src='{{ asset('uploads/prescription/').'/'.$prescription->image }}'>
+                                                        <img class="img-fluid" src='{{ asset('uploads/prescription/').'/'.$prescription->image }}'>
                                                     </a>
                                                 </div>
                                             </li>
@@ -223,7 +221,7 @@
                         html += "<span class='la la-times-circle'></span>";
                         html += "</a>";
                         html += " <a href='' class='pre-img'>";
-                        html += "<img src='" + aImg.src + "'>";
+                        html += "<img class='img-fluid' src='" + aImg.src + "'>";
                         html += " </a>";
                         html += "</div>";
                         html += "</li>";
@@ -276,7 +274,7 @@
                         html += ' <label > <input type = "checkbox" ' + checked + ' value="' + item.id + '" /> <span class= "lbl padding-8" > </span></label>';
                         html += '</div>';
                         html += '<a href = "" class= "pre-img" >';
-                        html += '<img src ={{ asset("uploads/prescription") }}/' + item.image + ' >';
+                        html += '<img class="img-fluid" src ={{ asset("uploads/prescription") }}/' + item.image + ' >';
                         html += '</a>';
                         html += '</div>';
                         html += ' </li>';

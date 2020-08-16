@@ -8904,7 +8904,7 @@ select.form-control-lg:not([size]):not([multiple]) {
 }
 
 .input-group--style-2 .input-group-btn > .btn {
-  border-radius: 50%;
+  /*border-radius: 50%;*/
   background: transparent;
   border-color: #e6e6e6;
   color: #818a91;

@@ -61,7 +61,7 @@
                         @endif
                         @auth
                         <li>
-                            <a href="{{ route('dashboard') }}" class="top-bar-item">{{__('My Panel')}}</a>
+                            <a href="{{ route('dashboard') }}" class="top-bar-item">{{__('My Dashboard')}}</a>
                         </li>
                         <li>
                             <a href="{{ route('logout') }}" class="top-bar-item">{{__('Logout')}}</a>
@@ -423,11 +423,11 @@
                             </a>
 
                             @if(Route::currentRouteName() != 'home' && Route::currentRouteName() != 'categories.all')
-                                <div class="d-none d-xl-block category-menu-icon-box">
+<!--                                <div class="d-none d-xl-block category-menu-icon-box">
                                     <div class="dropdown-toggle navbar-light category-menu-icon" id="category-menu-icon">
                                         <span class="navbar-toggler-icon"></span>
                                     </div>
-                                </div>
+                                </div>-->
                             @endif
                         </div>
                     </div>

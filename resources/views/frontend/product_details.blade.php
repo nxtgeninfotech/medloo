@@ -281,10 +281,10 @@
                                 <div class="d-table-cell">
                                     <!-- Buy Now button -->
                                     @if ($qty > 0)
-                                        <button type="button" class="btn btn-styled btn-base-1 btn-icon-left strong-700 hov-bounce hov-shaddow buy-now" onclick="buyNow()">
+                                        <button type="button" class="btn btn-secondary btn-icon-left strong-700 hov-bounce hov-shaddow buy-now" onclick="buyNow()">
                                             <i class="la la-shopping-cart"></i> {{__('Buy Now')}}
                                         </button>
-                                        <button type="button" class="btn btn-styled btn-alt-base-1 c-white btn-icon-left strong-700 hov-bounce hov-shaddow ml-2 add-to-cart" onclick="addToCart()">
+                                        <button type="button" class="btn btn-primary c-white btn-icon-left strong-700 hov-bounce hov-shaddow ml-2 add-to-cart" onclick="addToCart()">
                                             <i class="la la-shopping-cart"></i>
                                             <span class="d-none d-md-inline-block"> {{__('Add to cart')}}</span>
                                         </button>
