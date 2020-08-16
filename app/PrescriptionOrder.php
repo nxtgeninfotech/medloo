@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Prescription extends Model
+class PrescriptionOrder extends Model
 {
     protected $fillable = [
+        'order_id',
         'images',
         'action_id',
         'duration'
@@ -27,5 +28,10 @@ class Prescription extends Model
         static::creating(function ($model) {
             $model->created_at = $model->freshTimestamp();
         });
+    }
+
+    public function order()
+    {
+        $this->belongsTo('App\Order');
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Prescription;
 use App\PrescriptionImage;
+use App\PrescriptionOrder;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Auth;
@@ -22,6 +22,7 @@ use App\Coupon;
 use App\CouponUsage;
 use App\User;
 use App\Address;
+use Illuminate\Support\Str;
 use Session;
 
 class CheckoutController extends Controller
@@ -232,7 +233,9 @@ class CheckoutController extends Controller
 
         $request->session()->forget('prescription');
 
-        if (strpos(url()->previous(), 'prescription')) {
+
+        if (Str::is('*prescription*', url()->previous())) {
+
             $request->session()->put('cart', collect([]));
             $request->session()->put('prescription', 'true');
 
@@ -416,8 +419,7 @@ class CheckoutController extends Controller
     {
         $order = Order::findOrFail(Session::get('order_id'));
 
-        if ($request->session()->get('prescription') == true) {
-
+        if ($request->session()->get('prescription')) {
             $this->prescription_order($request);
 
             return view('frontend.prescription.order_confirmation', compact('order'));
@@ -428,15 +430,12 @@ class CheckoutController extends Controller
 
     public function prescription_order(Request $request)
     {
-        $obj = new Prescription();
-        $obj->images = PrescriptionImage::myPrescription()->isDefault()->get()->pluck('image');
+        $obj = new PrescriptionOrder();
+        $obj->order_id = Session::get('order_id');
+        $obj->images = serialize(PrescriptionImage::myPrescription()->isDefault()->get()->pluck('image'));
         $obj->action_id = $request->session()->get('type_of_order');
         $obj->duration = $request->session()->get('type_of_order') == 1 ? $request->session()->get('duration') : null;
         $obj->save();
-
-        $order = Order::findOrFail(Session::get('order_id'));
-        $order->prescription_id = $obj->id;
-        $order->save();
     }
 }
 
