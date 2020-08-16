@@ -204,7 +204,7 @@ Route::group(['middleware' => ['user', 'verified']], function () {
         Route::post('update-default', 'PrescriptionController@update_default_image');
     });
 
-    Route::post('prescription/checkout', 'PrescriptionController@checkout');
+    Route::any('prescription/checkout', 'PrescriptionController@checkout');
 
 
 });
