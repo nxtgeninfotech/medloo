@@ -10,6 +10,8 @@ app/storage/
 # Laravel 5 & Lumen specific
 public/storage
 public/hot
+
+#Images directory
 public/invoices
 public/uploads
 
@@ -17,6 +19,7 @@ public/uploads
 # Laravel 5 & Lumen specific with changed public path
 public_html/storage
 public_html/hot
+resources/lang
 
 storage/*.key
 .env
@@ -24,3 +27,4 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+
