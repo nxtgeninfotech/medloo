@@ -151,38 +151,6 @@
         <div class="row cols-xs-space cols-sm-space cols-md-space">
             <div class="col-lg-12 mx-auto">
                 <div class="card order-tracking">
-                    <div class="card-header py-2 px-3 heading-6 strong-600 clearfix">
-                        <div class="order-tracking-inner">
-                            <!--<div class="connecting-line"></div>-->
-                            <ul class="nav nav-tabs process-steps clearfix border-0" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" aria-expanded="true">
-                                        <div class="icon">1</div>
-                                        <div class="title">{{__('Order Placed')}}</div>
-                                    </a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" aria-expanded="false">
-                                        <div class="icon">2</div>
-                                        <div class="title">{{__('On Review')}}</div>
-                                    </a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab">
-                                        <div class="icon">3</div>
-                                        <div class="title">{{__('On Delivery')}}</div>
-                                    </a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab">
-                                        <div class="icon">4</div>
-                                        <div class="title">{{__('Delivered')}}</div>
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div>
                     <div class="card-body">
                         <div class="order-tracking-wrapper">
                             <form role="form" action="">
@@ -231,8 +199,8 @@
                                                                         <div class="date strong-600">25 JAN 2015</div>
                                                                         <div class="time">7:00 PM</div>
                                                                     </div>
-                                                                    <div class="item-status"><span class="strong-600 mr-1 text-nowrap">Activity :</span><span class="status-info">Transit</span></div>
-                                                                    <div class="item-location"><span class="strong-600 mr-1">Location :</span><span class="location-name">Mumbai</span></div>
+                                                                    <div class="item-status"><span class="strong-600 mr-1 text-nowrap">Activity :</span><span class="status-info">Out for Delivery</span></div>
+                                                                    <div class="item-location"><span class="strong-600 mr-1">Location :</span><span class="location-name">New Delhi - 11607 (Warehouse)</span></div>
                                                                 </li>
                                                                 <li class="tl-item" ng-repeat="item in retailer_history">
                                                                     <div class="datetime">
@@ -258,42 +226,8 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <ul class="list-inline pull-right">
-                                            <li><button type="button" class="btn btn-primary nextStep">Continue to next step</button></li>
-                                        </ul>
                                     </div>
-                                    <div class="tab-pane" role="tabpanel" id="step2">
-                                        <h4 class="text-left heading-6 strong-600">{{__('On Review')}}</h4>
-                                        <div class="row">
-                                        </div>
-                                        <ul class="list-inline pull-right">
-                                            <li><button type="button" class="btn btn-default prevStep mr-2">Back</button></li>
-                                            <li><button type="button" class="btn btn-primary nextStep">Continue</button></li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane" role="tabpanel" id="step3">
-                                        <h4 class="text-left heading-6 strong-600">{{__('On Delivery')}}</h4>
-                                        <div class="row">
 
-                                        </div>
-                                        <ul class="list-inline pull-right">
-                                            <li><button type="button" class="btn btn-default prevStep mr-2">Back</button></li>
-                                            <li><button type="button" class="btn btn-primary nextStep">Continue</button></li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane" role="tabpanel" id="step4">
-                                        <h4 class="text-left heading-6 strong-600">{{__('Delivered')}}</h4>
-                                        <div class="all-info-container">
-
-                                        </div>
-
-                                        <ul class="list-inline pull-right">
-                                            <li><button type="button" class="btn btn-default prevStep mr-2">Back</button></li>
-                                            <li><button type="button" class="btn btn-primary nextStep">Finish</button></li>
-                                        </ul>
-                                    </div>
-                                    <div class="clearfix"></div>
                                 </div>
                             </form>
                         </div>
