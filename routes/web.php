@@ -197,6 +197,8 @@ Route::group(['middleware' => ['user', 'verified']], function () {
         ->name('order-with-prescription');
     Route::get('order-with-prescription/specify', 'PrescriptionController@prescription_specify');
 
+    Route::get('my-prescription', 'PrescriptionController@myPrescription')->name('my-prescription');
+
     Route::group(['prefix' => 'ajax/prescription/image'], function () {
         Route::get('list', 'PrescriptionController@list_image');
         Route::post('store', 'PrescriptionController@add_image');
