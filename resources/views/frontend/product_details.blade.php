@@ -400,7 +400,7 @@
                                     <div class="product-description-label mt-2">{{__('Share')}}:</div>
                                 </div>
                                 <div class="col-10">
-                                    <div id="share"></div>
+                                    <!--<div id="share"></div>-->
                                 </div>
                             </div>
                         </div>
@@ -410,6 +410,281 @@
         </div>
     </section>
 
+    
+    <!--- Start New Product Details Design --->
+<section class="product-details-area gry-bg">
+    <div class="container">
+        <div class="bg-white">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="product-gal sticky-top d-flex flex-row-reverse">
+                        @if(is_array(json_decode($detailedProduct->photos)) && count(json_decode($detailedProduct->photos)) > 0)
+                        <div class="product-gal-img text-center">
+                            <img src="{{ asset('frontend/images/placeholder.jpg') }}" class="xzoom img-fluid lazyload" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset(json_decode($detailedProduct->photos)[0]) }}" xoriginal="{{ asset(json_decode($detailedProduct->photos)[0]) }}" />
+                        </div>
+                        <div class="product-gal-thumb">
+                            <div class="xzoom-thumbs">
+                                @foreach (json_decode($detailedProduct->photos) as $key => $photo)
+                                <a href="{{ asset($photo) }}">
+                                    <img src="{{ asset('frontend/images/placeholder.jpg') }}" class="xzoom-gallery lazyload" src="{{ asset('frontend/images/placeholder.jpg') }}" width="80" data-src="{{ asset($photo) }}"  @if($key == 0) xpreview="{{ asset($photo) }}" @endif>
+                                </a>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="product-details-content">
+                            <div class="row">
+                                <div class="col-10 pr-2">
+                                    <div class="product-title">                                        
+                                        <h1>Samsung Galaxy M21 (Midnight Blue, 4GB RAM, 64GB Storage)</h1>
+                                    </div>
+                                    <div class="product-customer-review">
+                                        <div class="review-star d-inline mr-2">
+                                            <span class="fa fa-star text-yellow"></span>
+                                            <span class="fa fa-star text-yellow"></span>
+                                            <span class="fa fa-star text-yellow"></span>
+                                            <span class="fa fa-star text-yellow"></span>
+                                            <span class="fa fa-star text-gray"></span>
+                                        </div>
+                                        <div class="riview-count d-inline">
+                                            <a class="text-dark" href="#" title="Product Total Review">(150 review)</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2 pl-2">
+                                    <div class="product-brand">                                        
+                                        <img src="https://images.latintimes.com/sites/latintimes.com/files/styles/full/public/2019/12/05/samsung-logo.jpg" class="img-fluid" alt="brand-logo">
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="row no-gutters mt-3">
+                                <div class="col-lg-6 align-self-center">
+                                    <div class="product-price">
+                                        <h3 class="text-primary"><span class="currency-symbol">&#8377</span> 13,999.00 <span class="product-piece">/ 1</span></h3>
+                                    </div>
+                                    <div class="product-price-info">
+                                        <span class="product-mrp-price">MRP <strike><span class="currency-symbol">&#8377</span>15,499.00</strike></span>
+                                        <span class="product-save-price">Save <span class="currency-symbol">&#8377</span>1500.00</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 d-flex flex-column">
+                                    <div class="product-stock-status in-stock"><i class="fa fa-check-square text-green"></i> {{__('In Stoke')}}</div>
+                                    <!--<div class="product-stock-status out-of-stock"><i class="fa fa-times-circle text-danger"></i> {{__('Out of Stock')}}</div>-->
+                                    <div class="product-delivery-check mt-auto">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Enter Delivery Pincode" aria-label="Enter Delivery Address" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button">Check</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row no-gutters mt-3">
+                                <div class="col-lg-1 col-2">
+                                     <div class="mt-2 strong-600">{{__('Size')}}:</div>
+                                </div>
+                                <div class="col-lg-11 col-10">
+                                    <div class="d-flex product-size-radio">
+                                        <ul class="list-inline mb-0">
+                                            <li>
+                                                <div class="product-size">
+                                                    <input type="radio" id="size1" name="product-size" checked>
+                                                    <label for="size1">1</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="product-size">
+                                                    <input type="radio" id="size2" name="product-size" >
+                                                    <label for="size2">2</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="product-size">
+                                                    <input type="radio" id="size3" name="product-size" >
+                                                    <label for="size3">3</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="product-size">
+                                                    <input type="radio" id="size4" name="product-size" >
+                                                    <label for="size4">4</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row no-gutters mt-2">
+                                <div class="col-lg-1 col-2">
+                                    <div class="mt-2 strong-600">{{__('Color')}}:</div>
+                                </div>
+                                <div class="col-lg-11 col-10">
+                                    <div class="product-color d-flex">
+                                        <ul class="list-inline checkbox-color mb-0">
+                                            @foreach (json_decode($detailedProduct->colors) as $key => $color)
+                                            <li>
+                                                <input type="radio" id="{{ $detailedProduct->id }}-color-{{ $key }}" name="color" value="{{ $color }}" @if($key == 0) checked @endif>
+                                                       <label style="background: {{ $color }};" for="{{ $detailedProduct->id }}-color-{{ $key }}" data-toggle="tooltip"></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="{{ $detailedProduct->id }}-color-{{ $key }}" name="color" value="{{ $color }}" @if($key == 0) checked @endif>
+                                                       <label style="background: {{ $color }};" for="{{ $detailedProduct->id }}-color-{{ $key }}" data-toggle="tooltip"></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="{{ $detailedProduct->id }}-color-{{ $key }}" name="color" value="{{ $color }}" @if($key == 0) checked @endif>
+                                                       <label style="background: {{ $color }};" for="{{ $detailedProduct->id }}-color-{{ $key }}" data-toggle="tooltip"></label>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row no-gutters">
+                                <div class="col-lg-6">
+                                    <div class="product-quantity qty-box d-flex align-items-center">
+                                        <div class="input-group input-group--style-2 pr-3" style="width: 160px;">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-number btn-primary" type="button" data-type="minus" data-field="quantity" disabled="disabled">
+                                                    <i class="la la-minus"></i>
+                                                </button>
+                                            </span>
+                                            <input type="text" name="quantity" class="form-control input-number text-center" placeholder="1" value="1" min="1" max="10">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-number btn-primary" type="button" data-type="plus" data-field="quantity">
+                                                    <i class="la la-plus"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                        <div class="avialable-amount">(<span id="available-quantity">{{ $qty }}</span> {{__('available')}})</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 align-self-center text-right">
+                                    <div class="d-table width-100">
+                                        <div class="d-table-cell">
+                                            <!-- Buy Now button -->
+                                            @if ($qty > 0)
+                                            <button type="button" class="btn btn-secondary btn-icon-left strong-700 hov-bounce hov-shaddow buy-now" onclick="buyNow()">
+                                                <i class="la la-shopping-cart"></i> {{__('Buy Now')}}
+                                            </button>
+                                            <button type="button" class="btn btn-primary c-white btn-icon-left strong-700 hov-bounce hov-shaddow ml-2 add-to-cart" onclick="addToCart()">
+                                                <i class="la la-shopping-cart"></i>
+                                                <span class="d-none d-md-inline-block"> {{__('Add to cart')}}</span>
+                                            </button>
+                                            @else
+                                            <button type="button" class="btn btn-styled btn-base-3 btn-icon-left strong-700" disabled>
+                                                <i class="la la-cart-arrow-down"></i> {{__('Out of Stock')}}
+                                            </button>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row no-gutters mt-3">
+                                <div class="col-lg-12">
+                                    <div class="product-offer-code text-center">
+                                        <p class="m-0 p-0">10% Off On This Item - Use Voucher Code <span class="offer-code">MEDLOO10</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row no-gutters mt-3 border">
+                                <div class="col-lg-4 col-12 border-right">
+                                     <div class="product-info d-flex align-items-center">
+                                        <div class="box-icon">
+                                            <i class="la la-truck"></i>
+                                        </div>
+                                        <div class="box-text">
+                                            <strong>Free Delivery*</strong>
+                                            <p class="stock-deliver mb-0">Approx <span class="deliver-day">3</span> Working Days </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12 border-right">
+                                    <div class="product-info d-flex align-items-center justify-content-center mr-2">
+                                        <div class="box-icon">
+                                            <i class="la la-archive"></i>
+                                        </div>
+                                        <div class="box-text">
+                                            <strong>1 Year Guarantee</strong>
+                                            <p class="mb-0">On This Product</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                     <div class="product-info d-flex align-items-center">
+                                        <div class="box-icon">
+                                            <i class="la la-file"></i>
+                                        </div>
+                                        <div class="box-text">
+                                            <strong>Product Review</strong>
+                                            <div class="write-review text-nowrap">
+                                                <a href="javascript:void(0);" class="text-dark">(2 Review)</a>
+                                                <a href="javascript:void(0);">Write a Review</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <hr>
+                             <div class="row no-gutters mt-3 product-payment-share align-items-center">
+                                <div class="col-lg-2 col-2">
+                                    <div class="product-description-label strong-600">{{__('Payment')}}:</div>
+                                </div>
+                                <div class="col-lg-10 col-10">
+                                    <ul class="inline-links product-payment-option">
+                                        <li>
+                                            <img src="{{ asset('frontend/images/placeholder.jpg') }}" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/icons/cards/payment-visa.png') }}" width="45" class="lazyload">
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('frontend/images/placeholder.jpg') }}" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/icons/cards/payment-master-card.png') }}" width="45" class="lazyload">
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('frontend/images/placeholder.jpg') }}" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/icons/cards/payment-maestro-card.png') }}" width="45" class="lazyload">
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('frontend/images/placeholder.jpg') }}" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/icons/cards/payment-paypal.png') }}" width="45" class="lazyload">
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('frontend/images/placeholder.jpg') }}" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/icons/cards/payment-paypal-credit.png') }}" width="45" class="lazyload">
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('frontend/images/placeholder.jpg') }}" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/icons/cards/payment-amazon-pay.png') }}" width="45" class="lazyload">
+                                        </li>
+                                        <li>
+                                            <img src="{{ asset('frontend/images/placeholder.jpg') }}" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/icons/cards/payment-cod.png') }}" width="45" class="lazyload">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                              <hr>
+                            <div class="row no-gutters mt-2 align-items-center">
+                                <div class="col-2">
+                                    <div class="product-description-label strong-600">{{__('Share')}}:</div>
+                                </div>
+                                <div class="col-10">
+                                    <div id="share"></div>
+                                </div>
+                            </div>
+                          <div class="row no-gutters mt-2">
+                              <div class="col-lg-12">   
+                                  <div class="product-offer-banner">
+                                      <img src="https://medicana.co.in/images/home-banner.jpg" alt="offer-banner" class="img-fluid">
+                                  </div>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--- End New Product Details Design --->
+    
     <section class="gry-bg">
         <div class="container">
             <div class="row">
