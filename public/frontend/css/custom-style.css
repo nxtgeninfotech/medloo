@@ -625,7 +625,13 @@
 .box-icon{font-size:2rem;width:36px;height:36px;line-height:36px;}
 
 .product-payment-option li{padding: 0 5px 0 0 !important;}
-	
+.card-columns .card{margin-bottom:0 !important} 
+.card .sub-cat-items li.sub-cat-name{position:relative;padding-left:8px;}
+.card .sub-cat-items li.sub-cat-name:before{content:'';left:0;top:5px;height:15px;width:2px;background-color:#2eaeaf;position:absolute}
+.card .sub-cat-items li a{position:relative;transition:ease-in-out .2s;}
+.card .sub-cat-items li a:hover{margin-left:5px !important;}
+.card .sub-cat-items li.sub-cat-name a{position:relative;}
+.card .sub-cat-items li.sub-cat-name a:hover{margin-left:0px !important;}
             
 
 @media (max-width: 767px){
@@ -736,4 +742,5 @@
         width: 100%;
     }
 }
+
 

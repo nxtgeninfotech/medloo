@@ -250,6 +250,7 @@ class CategoriesSeeder extends Seeder
             'Medicines' => $this->getMedicines(),
             'Ayurveda' => $this->getAyurveda(),
             'Personal Care' => $this->getPersonalCare(),
+            'Baby Care' => $this->getBabyCare(),
             'Health Supplements' => $this->getHealthSupplements(),
             'Diabetic' => $this->getDiabetic(),
             'Sexual Wellness' => $this->getSexualWellness(),
