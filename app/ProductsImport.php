@@ -42,10 +42,10 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation, WithChu
            'colors' => json_encode(array()),
            'choice_options' => json_encode(array()),
            'variations' => json_encode(array()),
-           // 'photos' => json_encode($row['photos']),
-           // 'thumbnail_img' => $row['thumbnail_img'],
-           // 'featured_img' => $row['featured_img'],
-           // 'flash_deal_img' => $row['flash_deal_img'],
+           'photos' => json_encode($row['photos']),
+           'thumbnail_img' => $row['thumbnail_img'],
+           'featured_img' => $row['featured_img'],
+           'flash_deal_img' => $row['flash_deal_img'],
            'slug' => preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $row['slug'])).'-'.str_random(5),
         ]);
      }
