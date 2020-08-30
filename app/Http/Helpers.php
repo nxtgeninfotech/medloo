@@ -519,6 +519,16 @@ if (! function_exists('home_discounted_base_price')) {
     }
 }
 
+// Shows Save Price
+if(! function_exists('home_total_save_price')){
+    function home_total_save_price($id)
+    {
+        $product = Product::findOrFail($id);
+        $price = $product->unit_price;
+        
+        return format_price(convert_price($price));
+    }
+}
 // Cart content update by discount setup
 if (! function_exists('updateCartSetup')) {
     function updateCartSetup($return = TRUE)
@@ -577,7 +587,7 @@ if (! function_exists('currency_symbol')) {
 
 if(! function_exists('renderStarRating')){
     function renderStarRating($rating,$maxRating=5) {
-        $fullStar = "<i class = 'fa fa-star active'></i>";
+        $fullStar = "<i class = 'fa fa-star text-yellow active'></i>";
         $halfStar = "<i class = 'fa fa-star half'></i>";
         $emptyStar = "<i class = 'fa fa-star'></i>";
         $rating = $rating <= $maxRating?$rating:$maxRating;
