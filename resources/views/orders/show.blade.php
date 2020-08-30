@@ -39,6 +39,37 @@
                 </div>
             </div>
             <hr>
+            <div class="row" id="ProcessShipping" style="display: none;">
+                <h4 class="panel-body">Set Courier Dimension</h4>
+                <div class="col-lg-10">
+                    <div class="col-lg-3">
+                        <label>Length</label>
+                        <input type="text" name="length" required class="form-control">
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Breadth</label>
+                        <input type="text" name="breadth" required class="form-control">
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Height</label>
+                        <input type="text" name="height" required class="form-control">
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Weight</label>
+                        <input type="text" name="weight" required class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <label for=update_payment_status""></label>
+                    <input type="button" onclick="ProcessShipping()" name="length" class="form-control btn btn-info"
+                           value="Process Shipping">
+                </div>
+            </div>
+            <hr>
             <div class="invoice-bill row">
                 <div class="col-sm-6 text-xs-center">
                     <address>
@@ -314,9 +345,20 @@
 
 @section('script')
     <script type="text/javascript">
+
         $('#update_delivery_status').on('change', function () {
             var order_id = {{ $order->id }};
             var status = $('#update_delivery_status').val();
+
+            if (status == "on_delivery") {
+                $('#ProcessShipping').show();
+                showAlert('info', 'Set courier dimension for delivery');
+                return true;
+            } else {
+                $('#ProcessShipping').hide();
+            }
+
+
             $.post('{{ route('orders.update_delivery_status') }}', {
                 _token: '{{ @csrf_token() }}',
                 order_id: order_id,
@@ -325,6 +367,47 @@
                 showAlert('success', 'Delivery status has been updated');
             });
         });
+
+        function ProcessShipping() {
+            var order_id = {{ $order->id }};
+            var status = $('#update_delivery_status').val();
+
+            //set courier dimension
+            var length = $('input[name=length]').val();
+            if (!length) {
+                showAlert('danger', 'Length field is required');
+            }
+            var breadth = $('input[name=breadth]').val();
+            if (!breadth) {
+                showAlert('danger', 'Breadth field is required');
+            }
+            var height = $('input[name=height]').val();
+            if (!height) {
+                showAlert('danger', 'Height field is required');
+            }
+            var weight = $('input[name=weight]').val();
+            if (!weight) {
+                showAlert('danger', 'Weight field is required');
+            }
+
+            if (!length || !breadth || !height || !weight) {
+                return true;
+            }
+
+            $.post('{{ route('orders.update_delivery_status') }}', {
+                _token: '{{ @csrf_token() }}',
+                order_id: order_id,
+                status: status,
+                dimension: {
+                    length: length,
+                    breadth: breadth,
+                    height: height,
+                    weight: weight
+                }
+            }, function (data) {
+                showAlert('success', 'Delivery status has been updated');
+            });
+        }
 
         $('#update_payment_status').on('change', function () {
             var order_id = {{ $order->id }};

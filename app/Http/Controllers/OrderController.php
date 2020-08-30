@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ShiprocketHelper;
+use App\OrderShipment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\OTPVerificationController;
 use App\Http\Controllers\ClubPointController;
@@ -475,6 +477,29 @@ class OrderController extends Controller
                 $otpController->send_delivery_status($order);
             } catch (\Exception $e) {
             }
+        }
+
+        if ($request->status == "on_delivery") {
+
+            $dimension = $request->dimension;
+
+            $orderShipment = OrderShipment::create([
+                'length' => $dimension['length'],
+                'breadth' => $dimension['breadth'],
+                'height' => $dimension['height'],
+                'weight' => $dimension['weight']
+            ]);
+
+
+            $response = ShiprocketHelper::createOrder($order, $orderShipment);
+            $orderShipment->order_id = $response['order_id'];
+            $orderShipment->shipment_id = $response['shipment_id'];
+            $orderShipment->status = $response['status'];
+            $orderShipment->save();
+
+            $order->orderDetails()->where('seller_id', Auth::user()->id)->update([
+                'order_shipment_id' => $orderShipment->id
+            ]);
         }
 
         return 1;

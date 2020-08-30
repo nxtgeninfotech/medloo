@@ -15,6 +15,7 @@ class CreateOrderShipmentsTable extends Migration
     {
         Schema::create('order_shipments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('order_id');
             $table->bigInteger('shipment_id');
             $table->float('length');
             $table->float('breadth');

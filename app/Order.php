@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
 {
@@ -26,8 +27,13 @@ class Order extends Model
         return $this->belongsTo(PickupPoint::class);
     }
 
-    public function prescriptionOrder ()
+    public function prescriptionOrder()
     {
         return $this->hasOne(PrescriptionOrder::class);
+    }
+
+    public function getShipmentOrderID()
+    {
+        return $this->id . '_' . Auth::user()->id;
     }
 }
