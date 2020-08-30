@@ -39,36 +39,51 @@
                 </div>
             </div>
             <hr>
-            <div class="row" id="ProcessShipping" style="display: none;">
-                <h4 class="panel-body">Set Courier Dimension</h4>
-                <div class="col-lg-10">
-                    <div class="col-lg-3">
-                        <label>Length</label>
-                        <input type="text" name="length" required class="form-control">
+
+            @if($order->orderDetails->first())
+
+                <div class="row" id="ProcessShipping"
+                     style="@if ($delivery_status != 'on_delivery') display: none;  @endif">
+
+                    @php
+                        $order_shipment_id = $order->orderDetails()->first()->order_shipment_id;
+                        $dimension = App\OrderShipment::find($order_shipment_id);
+                    @endphp
+                    <h4 class="panel-body">Set Courier Dimension</h4>
+                    <div class="col-lg-10">
+                        <div class="col-lg-3">
+                            <label>Length</label>
+                            <input type="text" name="length" required class="form-control"
+                                   value="{{ $dimension['length'] ?? 0 }}">
+                        </div>
+
+                        <div class="col-lg-3">
+                            <label>Breadth</label>
+                            <input type="text" name="breadth" required class="form-control"
+                                   value="{{ $dimension['breadth'] ?? 0 }}">
+                        </div>
+
+                        <div class="col-lg-3">
+                            <label>Height</label>
+                            <input type="text" name="height" required class="form-control"
+                                   value="{{ $dimension['height'] ?? 0 }}">
+                        </div>
+
+                        <div class="col-lg-3">
+                            <label>Weight</label>
+                            <input type="text" name="weight" required class="form-control"
+                                   value="{{ $dimension['weight'] ?? 0 }}">
+                        </div>
                     </div>
 
-                    <div class="col-lg-3">
-                        <label>Breadth</label>
-                        <input type="text" name="breadth" required class="form-control">
-                    </div>
-
-                    <div class="col-lg-3">
-                        <label>Height</label>
-                        <input type="text" name="height" required class="form-control">
-                    </div>
-
-                    <div class="col-lg-3">
-                        <label>Weight</label>
-                        <input type="text" name="weight" required class="form-control">
+                    <div class="col-lg-2">
+                        <label for=update_payment_status""></label>
+                        <input type="button" onclick="ProcessShipping()" name="length" class="form-control btn btn-info"
+                               value="Process Shipping" @if($order_shipment_id) disabled @endif">
                     </div>
                 </div>
+            @endif
 
-                <div class="col-lg-2">
-                    <label for=update_payment_status""></label>
-                    <input type="button" onclick="ProcessShipping()" name="length" class="form-control btn btn-info"
-                           value="Process Shipping">
-                </div>
-            </div>
             <hr>
             <div class="invoice-bill row">
                 <div class="col-sm-6 text-xs-center">

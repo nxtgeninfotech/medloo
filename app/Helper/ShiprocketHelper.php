@@ -109,7 +109,45 @@ class ShiprocketHelper
         ];
 
         //response has "id" also
-        return Shiprocket::pickup(Shiprocket::token())->addLocation($newLocation);
+        return Shiprocket::pickup(Shiprocket::getToken())->addLocation($newLocation);
+    }
+
+    public static function cancelShipment($ids)
+    {
+        $response = Shiprocket::order(Shiprocket::getToken())->cancel(['ids' => $ids]);
+
+        if ($response['status_code'] == 200) {
+            OrderShipment::whereIn('order_id', $ids)->update([
+                'cancelled_at' => Carbon::now()
+            ]);
+        }
+    }
+
+    public static function checkServiceability($pickup_postcode, $delivery_postcode)
+    {
+        $pincodeDetails = [
+            "pickup_postcode" => $pickup_postcode,
+            "delivery_postcode" => $delivery_postcode,
+            "cod" => 1,
+            "weight" => "1"
+        ];
+
+        $response = Shiprocket::courier(Shiprocket::getToken())->checkServiceability($pincodeDetails)->toArray();
+
+        $res = [
+            'message' => "avaliable",
+            'status' => true
+        ];
+
+        if (isset($response['status']) && $response['status'] == '404') {
+            $res = ['message' => 'Delivery pincode not serviceable', 'status' => false];
+        }
+
+        if (isset($response['status_code']) && $response['status_code'] == 422) {
+            $res = ['message' => 'Invalid Delivery Pincode', 'status' => false];
+        }
+
+        return $res;
     }
 
 }

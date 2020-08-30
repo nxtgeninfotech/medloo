@@ -23,6 +23,7 @@ class CreateOrderShipmentsTable extends Migration
             $table->float('weight');
             $table->string('status');
             $table->timestamps();
+            $table->timestamp('cancelled_at')->nullable();
         });
     }
 
