@@ -197,6 +197,8 @@ Route::group(['middleware' => ['user', 'verified']], function () {
         ->name('order-with-prescription');
     Route::get('order-with-prescription/specify', 'PrescriptionController@prescription_specify');
 
+    Route::get('my-prescription', 'PrescriptionController@myPrescription')->name('my-prescription');
+
     Route::group(['prefix' => 'ajax/prescription/image'], function () {
         Route::get('list', 'PrescriptionController@list_image');
         Route::post('store', 'PrescriptionController@add_image');
@@ -292,6 +294,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/digitalproducts/destroy/{id}', 'DigitalProductController@destroy')->name('digitalproducts.destroy');
     Route::get('/digitalproducts/download/{id}', 'DigitalProductController@download')->name('digitalproducts.download');
 
+
+    Route::post('check/courier/serviceability', 'ShipmentController@checkServiceAbility')
+        ->name('check.courier.serviceability');
 });
 
 Route::resource('shops', 'ShopController');

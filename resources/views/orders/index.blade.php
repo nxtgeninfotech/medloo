@@ -106,7 +106,7 @@
                             </td>
                             <td>
                                 <span class="badge badge--2 mr-4">
-                                    @if ($order->orderDetails->first() && $order->orderDetails->where('seller_id',  $admin_user_id)->first()->payment_status == 'paid')
+                                    @if ($order->orderDetails->first() && $order->orderDetails->where('seller_id',  $admin_user_id)->first() && $order->orderDetails->where('seller_id',  $admin_user_id)->first()->payment_status == 'paid')
                                         <i class="bg-green"></i> Paid
                                     @else
                                         <i class="bg-red"></i> Unpaid

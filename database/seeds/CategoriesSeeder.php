@@ -116,7 +116,131 @@ class CategoriesSeeder extends Seeder
                 'Bathing  Soaps & Bar',
                 'Shower gel',
                 'Body wash'
+            ],
+            'Deodorants , Perfumes & Talcum' => [
+                'Women',
+                'Men',
+                'Roll On & Stick Deos',
+                'Talcum Powder',
+                'Room Fresheners'
+            ],
+            'Hair Removal & Shaving' => [
+                'Razors & Cartridges',
+                'Hair Removing Cream & Wax',
+                'After Shave',
+                'Beard care'
+            ],
+            'Home Care' => [
+                'Mosquito Repellent',
+                'Rat Killer',
+                'Toilet Cleaners/ Fresheners'
             ]
+        ];
+    }
+   
+    protected function getBabyCare()
+    {
+        return [
+            'Baby Food' => [],
+            'Skin care and Bath' => [
+                'Face & Body Creams',
+                'Lotions',
+                'Hair Oils',
+                'Massage Oils',
+                'Shampoo, Body Wash & Soaps',
+                'Baby Powder'
+            ],
+            'Diaper and Wipes' => [
+                'Baby wipes',
+                'Diapers',
+                'Rash Cream',
+            ],
+            'Feeding Bottles ' => [],
+            'Baby Accessories' => [
+                'Teether',
+                'Soother',
+                'Gripe water',
+                'Cleaner Brushes'
+            ],
+            'Gift Sets' => []
+        ];
+    }
+
+    protected function getHealthSupplements()
+    {
+        return [
+            'Health & Nutrition foods/drinks' => [],
+            'Vitamins & Minerals' => [],
+            'Protein supplements' => [
+                'Kids',
+                'Men',
+                'Women',
+            ],
+            'Weight Management' => [
+                'Weight loss',
+                'Weight Gain',
+            ],
+            'Herbal Supplements' => []
+        ];
+    }
+
+    protected function getDiabetic()
+    {
+        return [
+            'Glucometers' => [],
+            'Testing stips & lancets' => [],
+            'Diabetic care' => [],
+            'Ayurvedic Diabetic  Care' => [],
+        ];
+    }
+
+    protected function getSexualWellness()
+    {
+        return [
+            'Condoms' => [],
+            'Lubricants & Massage Gel' => [],
+            'Sexual health products' => [],
+            'Pregnancy Test Kit' => [],
+        ];
+    }
+
+    protected function getHealthcareDevices()
+    {
+        return [
+            'BP Monitors' => [],
+            'Body Massager' => [],
+            'Nebulizer' => [],
+            'Oximeters' => [],
+            'Thermometers' => [],
+            'Weighing scale' => [],
+        ];
+    }
+
+    protected function getSurgicals()
+    {
+        return [
+            'First Aid Kit' => [],
+            'Masks & sanitizer' => [],
+            'N-95 Face Mask' => [],
+            'Orthopedics' => [],
+            'Catheter & Sutures' => [],
+            'Dressing & Cottons' => [],
+            'Gloves' => [],
+            'Bandage & Gauze' => [],
+            'Adhesive & paper Tape' => [],
+            'Stethoscope' => [],
+            'Adult Diapers' => [],
+        ];
+    }
+
+    protected function getPetCare()
+    {
+        return [
+            'Pet Food' => [],
+            'Pet care' => [],
+            'Bones' => [],
+            'Calcium' => [],
+            'Biscuits' => [],
         ];
     }
 
@@ -125,7 +249,14 @@ class CategoriesSeeder extends Seeder
         return [
             'Medicines' => $this->getMedicines(),
             'Ayurveda' => $this->getAyurveda(),
-            'Personal Care' => $this->getPersonalCare()
+            'Personal Care' => $this->getPersonalCare(),
+            'Baby Care' => $this->getBabyCare(),
+            'Health Supplements' => $this->getHealthSupplements(),
+            'Diabetic' => $this->getDiabetic(),
+            'Sexual Wellness' => $this->getSexualWellness(),
+            'Healthcare Devices' => $this->getHealthcareDevices(),
+            'Surgicals' => $this->getSurgicals(),
+            'Pat Care' => $this->getPetCare(),
         ];
     }
 
@@ -140,21 +271,21 @@ class CategoriesSeeder extends Seeder
 
         foreach ($categories as $category_name => $sub_category_value) {
 
-            $last_category = Category::create($this->getColumnValues($category_name));
+            $last_category = Category::updateOrCreate(['name' => $category_name],$this->getColumnValues($category_name));
 
             foreach (array_keys($sub_category_value) as $subcategory_name) {
 
                 $subcategory_data = array_merge($this->getColumnValues($subcategory_name),
                     ['category_id' => $last_category->id]);
 
-                $last_subcategory = SubCategory::create($subcategory_data);
+                $last_subcategory = SubCategory::updateOrCreate(['name' => $subcategory_name],$subcategory_data);
 
                 foreach ($categories[$category_name][$subcategory_name] as $sub_subcategory_name) {
 
                     $subcategory_data = array_merge($this->getColumnValues($sub_subcategory_name),
                         ['sub_category_id' => $last_subcategory->id]);
 
-                    SubSubCategory::create($subcategory_data);
+                    SubSubCategory::updateOrCreate(['name' => $sub_subcategory_name],$subcategory_data);
                 }
             }
         }

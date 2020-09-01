@@ -22,6 +22,8 @@ public_html/hot
 resources/lang
 
 storage/*.key
+storage/framework/views
+
 .env
 Homestead.yaml
 Homestead.json

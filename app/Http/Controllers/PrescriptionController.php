@@ -67,5 +67,10 @@ class PrescriptionController extends Controller
         return view('frontend.prescription.checkout')->with(['prescriptions' => $prescriptions]);
     }
 
+    public function myPrescription(Request $request)
+    {
+        $prescriptions = PrescriptionImage::myPrescription()->get();
+        return view('frontend.my_prescription', compact('prescriptions'));
+    }
 
 }

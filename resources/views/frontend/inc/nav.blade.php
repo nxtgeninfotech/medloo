@@ -15,12 +15,20 @@
                                 }
                             @endphp
                             <a href="" class="dropdown-toggle top-bar-item" data-toggle="dropdown">
-                                <img src="{{ asset('frontend/images/placeholder.jpg') }}" height="11" data-src="{{ asset('frontend/images/icons/flags/'.$locale.'.png') }}" class="flag lazyload" alt="{{ \App\Language::where('code', $locale)->first()->name }}" height="11"><span class="language">{{ \App\Language::where('code', $locale)->first()->name }}</span>
+                                <img src="{{ asset('frontend/images/placeholder.jpg') }}" height="11"
+                                     data-src="{{ asset('frontend/images/icons/flags/'.$locale.'.png') }}"
+                                     class="flag lazyload"
+                                     alt="{{ \App\Language::where('code', $locale)->first()->name }}" height="11"><span
+                                    class="language">{{ \App\Language::where('code', $locale)->first()->name }}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach (\App\Language::all() as $key => $language)
                                     <li class="dropdown-item @if($locale == $language) active @endif">
-                                        <a href="#" data-flag="{{ $language->code }}"><img src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/icons/flags/'.$language->code.'.png') }}" class="flag lazyload" alt="{{ $language->name }}" height="11"><span class="language">{{ $language->name }}</span></a>
+                                        <a href="#" data-flag="{{ $language->code }}"><img
+                                                src="{{ asset('frontend/images/placeholder.jpg') }}"
+                                                data-src="{{ asset('frontend/images/icons/flags/'.$language->code.'.png') }}"
+                                                class="flag lazyload" alt="{{ $language->name }}" height="11"><span
+                                                class="language">{{ $language->name }}</span></a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -41,7 +49,8 @@
                             <ul class="dropdown-menu">
                                 @foreach (\App\Currency::where('status', 1)->get() as $key => $currency)
                                     <li class="dropdown-item @if($currency_code == $currency->code) active @endif">
-                                        <a href="" data-currency="{{ $currency->code }}">{{ $currency->name }} ({{ $currency->symbol }})</a>
+                                        <a href="" data-currency="{{ $currency->code }}">{{ $currency->name }}
+                                            ({{ $currency->symbol }})</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -56,23 +65,24 @@
                         </li>
                         @if (\App\Addon::where('unique_identifier', 'affiliate_system')->first() != null && \App\Addon::where('unique_identifier', 'affiliate_system')->first()->activated)
                             <li>
-                                <a href="{{ route('affiliate.apply') }}" class="top-bar-item">{{__('Be an affiliate partner')}}</a>
+                                <a href="{{ route('affiliate.apply') }}"
+                                   class="top-bar-item">{{__('Be an affiliate partner')}}</a>
                             </li>
                         @endif
                         @auth
-                        <li>
-                            <a href="{{ route('dashboard') }}" class="top-bar-item">{{__('My Dashboard')}}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('logout') }}" class="top-bar-item">{{__('Logout')}}</a>
-                        </li>
+                            <li>
+                                <a href="{{ route('dashboard') }}" class="top-bar-item">{{__('Account')}}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}" class="top-bar-item">{{__('Logout')}}</a>
+                            </li>
                         @else
-                        <li>
-                            <a href="{{ route('user.login') }}" class="top-bar-item">{{__('Login')}}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('user.registration') }}" class="top-bar-item">{{__('Registration')}}</a>
-                        </li>
+                            <li>
+                                <a href="{{ route('user.login') }}" class="top-bar-item">{{__('Login / Signup')}}</a>
+                            </li>
+                            {{--<li>--}}
+                            {{-- <a href="{{ route('user.registration') }}" class="top-bar-item">{{__('Registration')}}</a>--}}
+                            {{-- </li>--}}
                         @endauth
                     </ul>
                 </div>
@@ -94,9 +104,11 @@
                     @auth
                         <div class="widget-profile-box px-3 py-4 d-flex align-items-center">
                             @if (Auth::user()->avatar_original != null)
-                                <div class="image " style="background-image:url('{{ asset(Auth::user()->avatar_original) }}')"></div>
+                                <div class="image "
+                                     style="background-image:url('{{ asset(Auth::user()->avatar_original) }}')"></div>
                             @else
-                                <div class="image " style="background-image:url('{{ asset('frontend/images/user.png') }}')"></div>
+                                <div class="image "
+                                     style="background-image:url('{{ asset('frontend/images/user.png') }}')"></div>
                             @endif
 
                             <div class="name">{{ Auth::user()->name }}</div>
@@ -106,7 +118,8 @@
                         </div>
                     @else
                         <div class="widget-profile-box px-3 py-4 d-flex align-items-center">
-                                <div class="image " style="background-image:url('{{ asset('frontend/images/icons/user-placeholder.jpg') }}')"></div>
+                            <div class="image "
+                                 style="background-image:url('{{ asset('frontend/images/icons/user-placeholder.jpg') }}')"></div>
                         </div>
                         <div class="side-login px-3 pb-3">
                             <a href="{{ route('user.login') }}">{{__('Sign In')}}</a>
@@ -142,7 +155,8 @@
                             @endphp
                             @if (\App\BusinessSetting::where('type', 'conversation_system')->first()->value == 1)
                                 <li>
-                                    <a href="{{ route('conversations.index') }}" class="{{ areActiveRoutesHome(['conversations.index', 'conversations.show'])}}">
+                                    <a href="{{ route('conversations.index') }}"
+                                       class="{{ areActiveRoutesHome(['conversations.index', 'conversations.show'])}}">
                                         <i class="la la-comment"></i>
                                         <span class="category-name">
                                             {{__('Conversations')}}
@@ -159,7 +173,8 @@
                                 <i class="la la-refresh"></i>
                                 <span>{{__('Compare')}}</span>
                                 @if(Session::has('compare'))
-                                    <span class="badge" id="compare_items_sidenav">{{ count(Session::get('compare'))}}</span>
+                                    <span class="badge"
+                                          id="compare_items_sidenav">{{ count(Session::get('compare'))}}</span>
                                 @else
                                     <span class="badge" id="compare_items_sidenav">0</span>
                                 @endif
@@ -184,12 +199,12 @@
                         </li>
 
                         @if(\App\BusinessSetting::where('type', 'classified_product')->first()->value == 1)
-                        <li>
-                            <a href="{{ route('customer_products.index') }}">
-                                <i class="la la-diamond"></i>
-                                <span>{{__('Classified Products')}}</span>
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('customer_products.index') }}">
+                                    <i class="la la-diamond"></i>
+                                    <span>{{__('Classified Products')}}</span>
+                                </a>
+                            </li>
                         @endif
 
                         @if (\App\BusinessSetting::where('type', 'wallet_system')->first()->value == 1)
@@ -209,12 +224,13 @@
                         </li>
 
                         @php
-                        $refund_request_addon = \App\Addon::where('unique_identifier', 'refund_request')->first();
-                        $club_point_addon = \App\Addon::where('unique_identifier', 'club_point')->first();
+                            $refund_request_addon = \App\Addon::where('unique_identifier', 'refund_request')->first();
+                            $club_point_addon = \App\Addon::where('unique_identifier', 'club_point')->first();
                         @endphp
                         @if ($refund_request_addon != null && $refund_request_addon->activated == 1)
                             <li>
-                                <a href="{{ route('customer_refund_request') }}" class="{{ areActiveRoutesHome(['customer_refund_request'])}}">
+                                <a href="{{ route('customer_refund_request') }}"
+                                   class="{{ areActiveRoutesHome(['customer_refund_request'])}}">
                                     <i class="la la-file-text"></i>
                                     <span class="category-name">
                                         {{__('Sent Refund Request')}}
@@ -225,7 +241,8 @@
 
                         @if ($club_point_addon != null && $club_point_addon->activated == 1)
                             <li>
-                                <a href="{{ route('earnng_point_for_user') }}" class="{{ areActiveRoutesHome(['earnng_point_for_user'])}}">
+                                <a href="{{ route('earnng_point_for_user') }}"
+                                   class="{{ areActiveRoutesHome(['earnng_point_for_user'])}}">
                                     <i class="la la-dollar"></i>
                                     <span class="category-name">
                                         {{__('Earning Points')}}
@@ -235,7 +252,8 @@
                         @endif
 
                         <li>
-                            <a href="{{ route('support_ticket.index') }}" class="{{ areActiveRoutesHome(['support_ticket.index', 'support_ticket.show'])}}">
+                            <a href="{{ route('support_ticket.index') }}"
+                               class="{{ areActiveRoutesHome(['support_ticket.index', 'support_ticket.show'])}}">
                                 <i class="la la-support"></i>
                                 <span class="category-name">
                                     {{__('Support Ticket')}}
@@ -295,7 +313,8 @@
                             @endphp
                             @if (\App\BusinessSetting::where('type', 'conversation_system')->first()->value == 1)
                                 <li>
-                                    <a href="{{ route('conversations.index') }}" class="{{ areActiveRoutesHome(['conversations.index', 'conversations.show'])}}">
+                                    <a href="{{ route('conversations.index') }}"
+                                       class="{{ areActiveRoutesHome(['conversations.index', 'conversations.show'])}}">
                                         <i class="la la-comment"></i>
                                         <span class="category-name">
                                             {{__('Conversations')}}
@@ -329,57 +348,58 @@
                                             }
                                         }
                                     @endphp
-                                    <small class="d-block text-sm alpha-5 mb-2">{{__('Your earnings (current month)')}}</small>
+                                    <small
+                                        class="d-block text-sm alpha-5 mb-2">{{__('Your earnings (current month)')}}</small>
                                     <span class="p-2 bg-base-1 rounded">{{ single_price($total) }}</span>
                                 </div>
                                 <table class="text-left mb-0 table w-75 m-auto">
                                     <tbody>
-                                        <tr>
-                                            @php
-                                                $orderDetails = \App\OrderDetail::where('seller_id', Auth::user()->id)->get();
-                                                $total = 0;
-                                                foreach ($orderDetails as $key => $orderDetail) {
-                                                    if($orderDetail->order != null && $orderDetail->order->payment_status == 'paid'){
-                                                        $total += $orderDetail->price;
-                                                    }
+                                    <tr>
+                                        @php
+                                            $orderDetails = \App\OrderDetail::where('seller_id', Auth::user()->id)->get();
+                                            $total = 0;
+                                            foreach ($orderDetails as $key => $orderDetail) {
+                                                if($orderDetail->order != null && $orderDetail->order->payment_status == 'paid'){
+                                                    $total += $orderDetail->price;
                                                 }
-                                            @endphp
-                                            <td class="p-1 text-sm">
-                                                {{__('Total earnings')}}:
-                                            </td>
-                                            <td class="p-1">
-                                                {{ single_price($total) }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            @php
-                                                $orderDetails = \App\OrderDetail::where('seller_id', Auth::user()->id)->where('created_at', '>=', date('-60d'))->where('created_at', '<=', date('-30d'))->get();
-                                                $total = 0;
-                                                foreach ($orderDetails as $key => $orderDetail) {
-                                                    if($orderDetail->order != null && $orderDetail->order->payment_status == 'paid'){
-                                                        $total += $orderDetail->price;
-                                                    }
+                                            }
+                                        @endphp
+                                        <td class="p-1 text-sm">
+                                            {{__('Total earnings')}}:
+                                        </td>
+                                        <td class="p-1">
+                                            {{ single_price($total) }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        @php
+                                            $orderDetails = \App\OrderDetail::where('seller_id', Auth::user()->id)->where('created_at', '>=', date('-60d'))->where('created_at', '<=', date('-30d'))->get();
+                                            $total = 0;
+                                            foreach ($orderDetails as $key => $orderDetail) {
+                                                if($orderDetail->order != null && $orderDetail->order->payment_status == 'paid'){
+                                                    $total += $orderDetail->price;
                                                 }
-                                            @endphp
-                                            <td class="p-1 text-sm">
-                                                {{__('Last Month earnings')}}:
-                                            </td>
-                                            <td class="p-1">
-                                                {{ single_price($total) }}
-                                            </td>
-                                        </tr>
+                                            }
+                                        @endphp
+                                        <td class="p-1 text-sm">
+                                            {{__('Last Month earnings')}}:
+                                        </td>
+                                        <td class="p-1">
+                                            {{ single_price($total) }}
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    @endif
-                    <!-- <div class="sidebar-widget-title py-0">
+                @endif
+                <!-- <div class="sidebar-widget-title py-0">
                         <span>Categories</span>
                     </div>
                     <ul class="side-seller-menu">
                         @foreach (\App\Category::all() as $key => $category)
-                            <li>
-                            <a href="{{ route('products.category', $category->slug) }}" class="text-truncate">
+                    <li>
+                    <a href="{{ route('products.category', $category->slug) }}" class="text-truncate">
                                 <img class="cat-image lazyload" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset($category->icon) }}" width="13" alt="{{ __($category->name) }}">
                                 <span>{{ __($category->name) }}</span>
                             </a>
@@ -422,8 +442,8 @@
                                 @endif
                             </a>
 
-                            @if(Route::currentRouteName() != 'home' && Route::currentRouteName() != 'categories.all')
-<!--                                <div class="d-none d-xl-block category-menu-icon-box">
+                        @if(Route::currentRouteName() != 'home' && Route::currentRouteName() != 'categories.all')
+                            <!--                                <div class="d-none d-xl-block category-menu-icon-box">
                                     <div class="dropdown-toggle navbar-light category-menu-icon" id="category-menu-icon">
                                         <span class="navbar-toggler-icon"></span>
                                     </div>
@@ -437,21 +457,23 @@
                                 <form action="{{ route('search') }}" method="GET">
                                     <div class="d-flex position-relative">
                                         <div class="d-lg-none search-box-back">
-                                            <button class="" type="button"><i class="la la-long-arrow-left"></i></button>
+                                            <button class="" type="button"><i class="la la-long-arrow-left"></i>
+                                            </button>
                                         </div>
                                         <div class="w-100">
-                                            <input type="text" aria-label="Search" id="search" name="q" class="w-100" placeholder="{{__('I am shopping for...')}}" autocomplete="off">
+                                            <input type="text" aria-label="Search" id="search" name="q" class="w-100"
+                                                   placeholder="{{__('I am shopping for...')}}" autocomplete="off">
                                         </div>
                                         <div class="form-group category-select d-none d-xl-block">
                                             <select class="form-control selectpicker" name="category">
                                                 <option value="">{{__('All Categories')}}</option>
                                                 @foreach (\App\Category::all() as $key => $category)
-                                                <option value="{{ $category->slug }}"
-                                                    @isset($category_id)
-                                                        @if ($category_id == $category->id)
+                                                    <option value="{{ $category->slug }}"
+                                                            @isset($category_id)
+                                                            @if ($category_id == $category->id)
                                                             selected
                                                         @endif
-                                                    @endisset
+                                                        @endisset
                                                     >{{ __($category->name) }}</option>
                                                 @endforeach
                                             </select>
@@ -461,7 +483,11 @@
                                         </button>
                                         <div class="typed-search-box d-none">
                                             <div class="search-preloader">
-                                                <div class="loader"><div></div><div></div><div></div></div>
+                                                <div class="loader">
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                </div>
                                             </div>
                                             <div class="search-nothing d-none">
 
@@ -482,35 +508,36 @@
                                         </a>
                                     </div>
                                 </div>
-<!--                                <div class="d-none d-lg-inline-block">
+                            <!--                                <div class="d-none d-lg-inline-block">
                                     <div class="nav-compare-box" id="compare">
                                         <a href="{{ route('compare') }}" class="nav-box-link">
                                             <i class="la la-refresh d-inline-block nav-box-icon"></i>
                                             <span class="nav-box-text d-none d-xl-inline-block">{{__('Compare')}}</span>
                                             @if(Session::has('compare'))
-                                                <span class="nav-box-number">{{ count(Session::get('compare'))}}</span>
+                                <span class="nav-box-number">{{ count(Session::get('compare'))}}</span>
                                             @else
-                                                <span class="nav-box-number">0</span>
-                                            @endif
-                                        </a>
-                                    </div>
-                                </div>-->
-<!--                                <div class="d-none d-lg-inline-block">
+                                <span class="nav-box-number">0</span>
+@endif
+                                </a>
+                            </div>
+                        </div>-->
+                            <!--                                <div class="d-none d-lg-inline-block">
                                     <div class="nav-wishlist-box" id="wishlist">
                                         <a href="{{ route('wishlists.index') }}" class="nav-box-link">
                                             <i class="la la-heart-o d-inline-block nav-box-icon"></i>
                                             <span class="nav-box-text d-none d-xl-inline-block">{{__('Wishlist')}}</span>
                                             @if(Auth::check())
-                                                <span class="nav-box-number">{{ count(Auth::user()->wishlists)}}</span>
+                                <span class="nav-box-number">{{ count(Auth::user()->wishlists)}}</span>
                                             @else
-                                                <span class="nav-box-number">0</span>
-                                            @endif
-                                        </a>
-                                    </div>
-                                </div>-->
+                                <span class="nav-box-number">0</span>
+@endif
+                                </a>
+                            </div>
+                        </div>-->
                                 <div class="d-block btn-order-upload">
                                     <div class="order-upload" id="order-prescription-upload">
-                                        <button type="button"  onclick="signUpModal('order-with-prescription')" class="btn btn-primary">
+                                        <button type="button" onclick="signUpModal('order-with-prescription')"
+                                                class="btn btn-primary">
                                             <!--<i class="la la-heart-o d-inline-block nav-box-icon"></i>-->
                                             <span class="nav-box-text d-inline-block">{{__('Upload')}}</span>
                                         </button>
@@ -518,7 +545,8 @@
                                 </div>
                                 <div class="d-block" data-hover="dropdown">
                                     <div class="nav-cart-box dropdown" id="cart_items">
-                                        <a href="" class="nav-box-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a href="" class="nav-box-link" data-toggle="dropdown" aria-haspopup="true"
+                                           aria-expanded="false">
                                             <i class="la la-shopping-cart d-inline-block nav-box-icon"></i>
                                             <span class="nav-box-text d-none d-xl-inline-block">{{__('Cart')}}</span>
                                             @if(Session::has('cart'))
@@ -548,21 +576,29 @@
                                                                         <div class="d-flex align-items-center">
                                                                             <div class="dc-image">
                                                                                 <a href="{{ route('product', $product->slug) }}">
-                                                                                    <img src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset($product->thumbnail_img) }}" class="img-fluid lazyload" alt="{{ __($product->name) }}">
+                                                                                    <img
+                                                                                        src="{{ asset('frontend/images/placeholder.jpg') }}"
+                                                                                        data-src="{{ asset($product->thumbnail_img) }}"
+                                                                                        class="img-fluid lazyload"
+                                                                                        alt="{{ __($product->name) }}">
                                                                                 </a>
                                                                             </div>
                                                                             <div class="dc-content">
-                                                                                <span class="d-block dc-product-name text-capitalize strong-600 mb-1">
+                                                                                <span
+                                                                                    class="d-block dc-product-name text-capitalize strong-600 mb-1">
                                                                                     <a href="{{ route('product', $product->slug) }}">
                                                                                         {{ __($product->name) }}
                                                                                     </a>
                                                                                 </span>
 
-                                                                                <span class="dc-quantity">x{{ $cartItem['quantity'] }}</span>
-                                                                                <span class="dc-price">{{ single_price($cartItem['price']*$cartItem['quantity']) }}</span>
+                                                                                <span
+                                                                                    class="dc-quantity">x{{ $cartItem['quantity'] }}</span>
+                                                                                <span
+                                                                                    class="dc-price">{{ single_price($cartItem['price']*$cartItem['quantity']) }}</span>
                                                                             </div>
                                                                             <div class="dc-actions">
-                                                                                <button onclick="removeFromCart({{ $key }})">
+                                                                                <button
+                                                                                    onclick="removeFromCart({{ $key }})">
                                                                                     <i class="la la-close"></i>
                                                                                 </button>
                                                                             </div>
@@ -572,21 +608,24 @@
                                                             </div>
                                                             <div class="dc-item py-3">
                                                                 <span class="subtotal-text">{{__('Subtotal')}}</span>
-                                                                <span class="subtotal-amount">{{ single_price($total) }}</span>
+                                                                <span
+                                                                    class="subtotal-amount">{{ single_price($total) }}</span>
                                                             </div>
                                                             <div class="py-2 text-center dc-btn">
                                                                 <ul class="inline-links inline-links--style-3">
                                                                     <li class="px-1">
-                                                                        <a href="{{ route('cart') }}" class="link link--style-1 text-capitalize btn btn-base-1 px-3 py-1">
+                                                                        <a href="{{ route('cart') }}"
+                                                                           class="link link--style-1 text-capitalize btn btn-base-1 px-3 py-1">
                                                                             <i class="la la-shopping-cart"></i> {{__('View cart')}}
                                                                         </a>
                                                                     </li>
                                                                     @if (Auth::check())
-                                                                    <li class="px-1">
-                                                                        <a href="{{ route('checkout.shipping_info') }}" class="link link--style-1 text-capitalize btn btn-base-1 px-3 py-1 light-text">
-                                                                            <i class="la la-mail-forward"></i> {{__('Checkout')}}
-                                                                        </a>
-                                                                    </li>
+                                                                        <li class="px-1">
+                                                                            <a href="{{ route('checkout.shipping_info') }}"
+                                                                               class="link link--style-1 text-capitalize btn btn-base-1 px-3 py-1 light-text">
+                                                                                <i class="la la-mail-forward"></i> {{__('Checkout')}}
+                                                                            </a>
+                                                                        </li>
                                                                     @endif
                                                                 </ul>
                                                             </div>
@@ -627,7 +666,10 @@
                                     @endphp
                                     <li class="category-nav-element" data-id="{{ $category->id }}">
                                         <a href="{{ route('products.category', $category->slug) }}">
-                                            <img class="cat-image lazyload" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset($category->icon) }}" width="30" alt="{{ __($category->name) }}">
+                                            <img class="cat-image lazyload"
+                                                 src="{{ asset('frontend/images/placeholder.jpg') }}"
+                                                 data-src="{{ asset($category->icon) }}" width="30"
+                                                 alt="{{ __($category->name) }}">
                                             <span class="cat-name">{{ __($category->name) }}</span>
                                         </a>
                                         @if(count($category->subcategories)>0)
@@ -649,19 +691,19 @@
     </div>
     <!-- Navbar -->
 
-    <!-- <div class="main-nav-area d-none d-lg-block">
+<!-- <div class="main-nav-area d-none d-lg-block">
         <nav class="navbar navbar-expand-lg navbar--bold navbar--style-2 navbar-light bg-default">
             <div class="container">
                 <div class="collapse navbar-collapse align-items-center justify-content-center" id="navbar_main">
                     <ul class="navbar-nav">
                         @foreach (\App\Search::orderBy('count', 'desc')->get()->take(5) as $key => $search)
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('suggestion.search', $search->query) }}">{{ $search->query }}</a>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('suggestion.search', $search->query) }}">{{ $search->query }}</a>
                             </li>
                         @endforeach
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div> -->
+    </ul>
+</div>
+</div>
+</nav>
+</div> -->
 </div>
