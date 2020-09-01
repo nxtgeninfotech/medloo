@@ -93,10 +93,13 @@ class ProductBulkUploadController extends Controller
 
     public function bulk_upload(Request $request)
     {
+        //dd($request->all());
+
         if($request->hasFile('bulk_file')){
+
             Excel::import(new ProductsImport, request()->file('bulk_file'));
         }
-        flash('Products exported successfully')->success();
+        flash('Products imported successfully')->success();
         return back();
     }
 
