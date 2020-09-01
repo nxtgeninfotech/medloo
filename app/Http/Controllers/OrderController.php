@@ -481,14 +481,16 @@ class OrderController extends Controller
 
         if ($request->status == "on_delivery") {
 
-            $dimension = $request->dimension;
+            try {
 
-            $orderShipment = OrderShipment::create([
-                'length' => $dimension['length'],
-                'breadth' => $dimension['breadth'],
-                'height' => $dimension['height'],
-                'weight' => $dimension['weight']
-            ]);
+                $dimension = $request->dimension;
+
+                $orderShipment = OrderShipment::create([
+                    'length' => $dimension['length'],
+                    'breadth' => $dimension['breadth'],
+                    'height' => $dimension['height'],
+                    'weight' => $dimension['weight']
+                ]);
 
 
             $response = ShiprocketHelper::createOrder($order, $orderShipment);
@@ -497,9 +499,14 @@ class OrderController extends Controller
             $orderShipment->status = $response['status'];
             $orderShipment->save();
 
-            $order->orderDetails()->where('seller_id', Auth::user()->id)->update([
-                'order_shipment_id' => $orderShipment->id
-            ]);
+                $order->orderDetails()->where('seller_id', Auth::user()->id)->update([
+                    'order_shipment_id' => $orderShipment->id
+                ]);
+
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+
         }
 
         return 1;

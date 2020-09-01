@@ -27,6 +27,7 @@ class ShiprocketHelper
             ->first()->total;
 
         $orderDetails = [
+            "mode" => "Surface",
             "order_id" => $order->getShipmentOrderID(),
             "order_date" => Carbon::today(),
             "pickup_location" => $pickup_location_code,
@@ -44,7 +45,8 @@ class ShiprocketHelper
             self::getCourierDimensions($orderShipment)
         );
 
-        return Shiprocket::order(Shiprocket::getToken())->create($orderDetails);
+
+        return Shiprocket::order(Shiprocket::getToken())->quickCreate($orderDetails);
     }
 
     public static function getBillingDetail(Order $order)
@@ -74,7 +76,7 @@ class ShiprocketHelper
                 "name" => $detail->product->name,
                 "sku" => Str::slug($detail->product->name),
                 "units" => $detail->quantity,
-                "selling_price" => $detail->product->price,
+                "selling_price" => $detail->product->unit_price,
                 "tax" => $detail->tax
             ];
         }
@@ -119,6 +121,12 @@ class ShiprocketHelper
         if ($response['status_code'] == 200) {
             OrderShipment::whereIn('order_id', $ids)->update([
                 'cancelled_at' => Carbon::now()
+            ]);
+
+            $shipment_ids = OrderShipment::whereIn('order_id', $ids)->get()->pluck('id');
+
+            OrderDetail::whereIn('shipment_order_id', $shipment_ids)->update([
+                'shipment_order_id' => null
             ]);
         }
     }
