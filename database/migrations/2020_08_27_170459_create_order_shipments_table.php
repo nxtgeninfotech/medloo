@@ -15,6 +15,7 @@ class CreateOrderShipmentsTable extends Migration
     {
         Schema::create('order_shipments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('order_id');
             $table->bigInteger('shipment_id');
             $table->float('length');
             $table->float('breadth');
@@ -22,6 +23,7 @@ class CreateOrderShipmentsTable extends Migration
             $table->float('weight');
             $table->string('status');
             $table->timestamps();
+            $table->timestamp('cancelled_at')->nullable();
         });
     }
 

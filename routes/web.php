@@ -294,6 +294,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/digitalproducts/destroy/{id}', 'DigitalProductController@destroy')->name('digitalproducts.destroy');
     Route::get('/digitalproducts/download/{id}', 'DigitalProductController@download')->name('digitalproducts.download');
 
+
+    Route::post('check/courier/serviceability', 'ShipmentController@checkServiceAbility')
+        ->name('check.courier.serviceability');
 });
 
 Route::resource('shops', 'ShopController');
